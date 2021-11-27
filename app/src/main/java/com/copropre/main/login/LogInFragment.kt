@@ -10,11 +10,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.copropre.R
 import com.copropre.common.services.main.AuthService
+import com.copropre.common.utils.Utils
 import com.copropre.databinding.FragmentLoginBinding
 
 class LogInFragment: Fragment(), View.OnClickListener {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+
+    private val emailErrors = ArrayList<String>()
+    private val passErrors = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,9 +65,26 @@ class LogInFragment: Fragment(), View.OnClickListener {
         }
     }
 
-    fun loginWithEmail() {
+    private fun loginWithEmail() {
+        // check email
         val email = binding.etEmail.text.toString()
+        emailErrors.clear()
+        passErrors.clear()
+        // check que c'est bien un email
+        if (!Utils.isValidEmail(email)) {
+            emailErrors.add("Email invalide")
+        }
+        // check password
         val password = binding.etPassword.text.toString()
+        if (!Utils.isValidPassword(password)) {
+            passErrors.add("Veuillez renseigner un mot de passe")
+        }
+
+        setEmailErrorAndPasswordErrorText()
+        if (passErrors.isNotEmpty() || emailErrors.isNotEmpty()) {
+            return
+        }
+
         AuthService.getAuth().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
@@ -71,6 +92,7 @@ class LogInFragment: Fragment(), View.OnClickListener {
                     Log.d("LoginUser", "signInWithEmail:success")
                     //val user = auth.currentUser
                     //updateUI(user)
+                    goBackFragmentMain()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("LoginUser", "signInWithEmail:failure", task.exception)
@@ -81,6 +103,22 @@ class LogInFragment: Fragment(), View.OnClickListener {
             }
 
     }
+
+    private fun setEmailErrorAndPasswordErrorText() {
+        binding.tErrorEmail.visibility = if (emailErrors.isEmpty()) View.GONE else View.VISIBLE
+        binding.tErrorPassword.visibility = if (passErrors.isEmpty()) View.GONE else View.VISIBLE
+        var textEmail = ""
+        for ((index,error) in emailErrors.withIndex()){
+            textEmail += if (index > 1) error else "\n"+error
+        }
+        binding.tErrorEmail.text = textEmail
+        var textPassword = ""
+        for ((index,error) in passErrors.withIndex()){
+            textPassword += if (index > 1) error else "\n"+error
+        }
+        binding.tErrorPassword.text = textPassword
+    }
+
 
     fun goBackFragmentMain() {
         parentFragmentManager.beginTransaction()

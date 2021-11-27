@@ -29,6 +29,13 @@
             android:id="@+id/etEmail"
             android:inputType="textEmailAddress"
             android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tErrorEmail"
+            android:visibility="gone"
+            android:textColor="@color/red_error"
+            />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,6 +43,13 @@
             android:id="@+id/etPassword"
             android:inputType="textPassword"
             android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tErrorPassword"
+            android:visibility="gone"
+            android:textColor="@color/red_error"
+            />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

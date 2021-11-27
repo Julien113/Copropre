@@ -19,6 +19,9 @@ class SignInFragment : Fragment(), View.OnClickListener {
     private val binding get() = _binding!!
 
 
+    private val emailErrors = ArrayList<String>()
+    private val passErrors = ArrayList<String>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,8 +49,6 @@ class SignInFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private val emailErrors = ArrayList<String>()
-    private val passErrors = ArrayList<String>()
     fun signInWithEmail() {
         // check email
         val email = binding.etEmail.text.toString()
