@@ -39,14 +39,14 @@ class MainFragment : Fragment(), View.OnClickListener {
         when(v!!.id){
             R.id.bLogOut -> {
                 AuthService.getAuth().signOut()
-                val fragmentLogin = LogInFragment();
+                val fragmentLogin = LogInFragment()
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.container, fragmentLogin)
                     .commitAllowingStateLoss()
 
             }
             R.id.bLogIn -> {
-                val fragmentLogin = LogInFragment();
+                val fragmentLogin = LogInFragment()
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.container, fragmentLogin)
                     .commitAllowingStateLoss()
