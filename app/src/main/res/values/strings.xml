@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Copropre</string>
+
+    <string name="favorite">Favoris</string>
+    <string name="content_description_favorite">Favoris</string>
+    <string name="search">Rechercher</string>
+    <string name="content_description_search">Rechercher</string>
+    <string name="login">Se connecter</string>
+    <string name="content_description_login">Se connecter</string>
+    <string name="logout">Se déconnecter</string>
+    <string name="content_description_logout">Se déconnecter</string>
+
+    <string name="house_list_add_fab">Create/Join a house</string>
+    <string name="house_list_add_house_fab">Create a house</string>
+    <string name="house_list_join_house_fab">Join a house</string>
 </resources>

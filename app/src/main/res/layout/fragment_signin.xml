@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Nom (Optionnel)"
-        android:hintTextColor="#757575"
+        android:textColorHint="#757575"
         android:minHeight="48dp" />
 
     <EditText
@@ -30,8 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tErrorEmail"
-        android:visibility="gone"
-        android:textColor="@color/red_error"
+        style="@style/EditTextErrorMsg"
         />
 
     <EditText
@@ -40,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Mot de passe"
-        android:hintTextColor="#757575"
+        android:textColorHint="#757575"
         android:inputType="textVisiblePassword"
         android:minHeight="48dp" />
 
@@ -48,8 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tErrorPassword"
-        android:visibility="gone"
-        android:textColor="@color/red_error"
+        style="@style/EditTextErrorMsg"
         />
     <TextView
         android:layout_width="wrap_content"

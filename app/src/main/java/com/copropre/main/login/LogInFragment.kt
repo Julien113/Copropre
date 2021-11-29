@@ -1,6 +1,5 @@
 package com.copropre.main.login
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater

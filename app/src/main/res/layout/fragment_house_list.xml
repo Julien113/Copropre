@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.recyclerview.widget.RecyclerView class="androidx.appcompat.app.AlertController$RecycleListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/browser_actions_text_color"
+        android:id="@+id/rvHouses"/>
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/bCreateHouse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        android:layout_above="@id/bJoinHouse"
+        app:icon="@drawable/outline_home_24"
+        app:fabSize="mini"
+        android:visibility="gone"
+        android:text="@string/house_list_add_house_fab"
+        android:contentDescription="@string/house_list_add_house_fab"/>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/bJoinHouse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        app:icon="@drawable/outline_group_add_24"
+        android:layout_above="@id/bAddJoinHouse"
+        app:fabSize="mini"
+        android:text="@string/house_list_join_house_fab"
+        android:visibility="gone"
+        android:contentDescription="@string/house_list_join_house_fab"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bAddJoinHouse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/outline_add_24"
+        android:contentDescription="@string/house_list_add_fab"/>
+
+</RelativeLayout>

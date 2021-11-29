@@ -123,7 +123,7 @@ class SignInFragment : Fragment(), View.OnClickListener {
 
     fun createAccount(name: String?, email: String, uid: String) {
         val user = User(email, uid, name)
-        UserService.createUser(user);
+        UserService.createUser(user)
     }
 
 }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.copropre.common.services.main.AuthService
 import com.copropre.databinding.ActivityMainBinding
 import com.copropre.main.MainFragment
+import com.copropre.main.house.HouseListFragment
 import com.copropre.main.login.LogInFragment
 
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         checkVersion()
+        initTopBar()
 
     }
 
@@ -37,10 +39,43 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setFragmentMain() {
-        val fragment = MainFragment();
+        val fragment = HouseListFragment();
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, fragment)
             .commitAllowingStateLoss()
+
+        /*
+        val fragment = MainFragment();
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, fragment)
+            .commitAllowingStateLoss()*/
+    }
+
+    fun initTopBar() {
+        binding.topAppBar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.mbFavorite -> {
+
+                    true
+                }
+                R.id.mbSearch -> {
+
+                    true
+                }
+                R.id.mbLogin -> {
+                    setFragmentLogin()
+                    true
+                }
+                R.id.mbLogout -> {
+                    AuthService.getAuth().signOut()
+                    setFragmentLogin()
+                    true
+                }
+                else -> {
+                    true
+                }
+            }
+        }
     }
 
 

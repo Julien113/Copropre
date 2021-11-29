@@ -36,7 +36,7 @@ class MainFragment : Fragment(), View.OnClickListener {
 
 
     override fun onClick(v: View?) {
-        when(v!!.id){
+        when (v!!.id) {
             R.id.bLogOut -> {
                 AuthService.getAuth().signOut()
                 val fragmentLogin = LogInFragment()

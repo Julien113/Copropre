@@ -1,19 +1,35 @@
 package com.copropre.common.models;
 
+import com.google.firebase.firestore.Exclude;
+
+import java.util.List;
+
 public class User extends DBClass{
+    String userId;
 
     String name;
     String mail;
     boolean active;
     boolean sudoer;
 
+    @Exclude
+    private List<House> houses;
+
     User() {
     }
 
     public User(String mail, String id, String name) {
         this.mail = mail;
-        this.id = id;
+        this.userId = id;
         this.name = name;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {

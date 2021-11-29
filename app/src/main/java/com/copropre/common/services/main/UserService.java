@@ -14,7 +14,7 @@ public class UserService extends AbstractService {
         user.setActive(true);
         user.setSudoer(false);
         user.setCreationDate(new Date());
-        return db.collection(USER_COLLECTION).document(user.getId()).set(user);
+        return db.collection(USER_COLLECTION).document(user.getUserId()).set(user);
     }
 
 }
