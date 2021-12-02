@@ -4,8 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.copropre.common.services.main.AuthService
 import com.copropre.databinding.ActivityMainBinding
-import com.copropre.main.MainFragment
-import com.copropre.main.house.HouseListFragment
+import com.copropre.main.house.list.HouseListFragment
 import com.copropre.main.login.LogInFragment
 
 
@@ -34,7 +33,8 @@ class MainActivity : AppCompatActivity() {
     fun setFragmentLogin() {
         val fragmentLogin = LogInFragment();
         supportFragmentManager.beginTransaction()
-            .replace(R.id.container, fragmentLogin)
+            .add(R.id.container, fragmentLogin)
+            .addToBackStack("login")
             .commitAllowingStateLoss()
     }
 

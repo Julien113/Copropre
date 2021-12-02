@@ -51,7 +51,7 @@ class LogInFragment: Fragment(), View.OnClickListener {
                 val fragmentSignIn = SignInFragment()
                 parentFragmentManager.beginTransaction()
                     .addToBackStack("SignIn")
-                    .replace(R.id.container, fragmentSignIn)
+                    .add(R.id.container, fragmentSignIn)
                     .commitAllowingStateLoss()
 
             }

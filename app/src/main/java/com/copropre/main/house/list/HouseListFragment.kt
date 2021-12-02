@@ -1,4 +1,4 @@
-package com.copropre.main.house
+package com.copropre.main.house.list
 
 import android.os.Bundle
 import android.util.Log
@@ -9,15 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.copropre.R
 import com.copropre.common.models.House
-import com.copropre.common.models.UserHouseLink
 import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.HouseService
 import com.copropre.databinding.FragmentHouseListBinding
-import com.google.firebase.firestore.ktx.toObjects
-import java.util.*
-import com.google.firebase.firestore.DocumentSnapshot
-
-
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.copropre.main.house.NewHouseFragment
 
 
 class HouseListFragment : Fragment(), View.OnClickListener {
@@ -43,9 +39,16 @@ class HouseListFragment : Fragment(), View.OnClickListener {
         binding.bAddJoinHouse.setOnClickListener(this)
         binding.bCreateHouse.setOnClickListener(this)
         binding.bJoinHouse.setOnClickListener(this)
-        houseListAdapter = HouseListAdapter(houseList)
+        houseListAdapter = HouseListAdapter(houseList, this)
         binding.rvHouses.adapter = houseListAdapter
-        binding.rvHouses.layoutManager = LinearLayoutManager(context)
+        var linearLayoutManager = LinearLayoutManager(context)
+        binding.rvHouses.layoutManager = linearLayoutManager
+
+        val dividerItemDecoration = DividerItemDecoration(
+            context,
+            linearLayoutManager.orientation
+        )
+        binding.rvHouses.addItemDecoration(dividerItemDecoration)
 
         HouseService.getMyHouses(AuthService.auth.uid) {
             if (it.isSuccessful) {

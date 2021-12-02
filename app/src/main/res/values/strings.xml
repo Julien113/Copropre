@@ -13,4 +13,8 @@
     <string name="house_list_add_fab">Create/Join a house</string>
     <string name="house_list_add_house_fab">Create a house</string>
     <string name="house_list_join_house_fab">Join a house</string>
+
+    <string name="house_tab_tasks">Taches</string>
+    <string name="house_tab_history">Historique</string>
+    <string name="house_tab_balance">Equilibre</string>
 </resources>
