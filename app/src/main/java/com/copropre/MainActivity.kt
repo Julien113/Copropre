@@ -54,19 +54,16 @@ class MainActivity : AppCompatActivity() {
     fun initTopBar() {
         binding.topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.mbFavorite -> {
-
-                    true
-                }
-                R.id.mbSearch -> {
-
-                    true
-                }
                 R.id.mbLogin -> {
                     setFragmentLogin()
                     true
                 }
                 R.id.mbLogout -> {
+                    AuthService.getAuth().signOut()
+                    setFragmentLogin()
+                    true
+                }
+                R.id.mbProfile -> {
                     AuthService.getAuth().signOut()
                     setFragmentLogin()
                     true
