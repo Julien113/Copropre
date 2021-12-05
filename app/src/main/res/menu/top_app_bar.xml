@@ -8,9 +8,9 @@
         android:contentDescription="@string/content_description_login"
         app:showAsAction="never" />
     <item
-        android:id="@+id/mbPrenium"
-        android:title="@string/prenium"
-        android:contentDescription="@string/content_description_prenium"
+        android:id="@+id/mbPremium"
+        android:title="@string/premium"
+        android:contentDescription="@string/content_description_premium"
         app:showAsAction="never" />
     <item
         android:id="@+id/mbLogout"

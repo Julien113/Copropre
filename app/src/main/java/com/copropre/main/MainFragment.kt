@@ -37,14 +37,6 @@ class MainFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.bLogOut -> {
-                AuthService.getAuth().signOut()
-                val fragmentLogin = LogInFragment()
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.container, fragmentLogin)
-                    .commitAllowingStateLoss()
-
-            }
             R.id.bLogIn -> {
                 val fragmentLogin = LogInFragment()
                 parentFragmentManager.beginTransaction()

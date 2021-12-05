@@ -9,6 +9,8 @@ import com.copropre.common.services.main.UserService
 import com.copropre.databinding.ActivityMainBinding
 import com.copropre.main.house.list.HouseListFragment
 import com.copropre.main.login.LogInFragment
+import com.copropre.main.login.SignInFragment
+import com.copropre.main.parameters.ProfileFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -75,14 +77,16 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.mbProfile -> {
-                    AuthService.getAuth().signOut()
-                    setFragmentLogin()
+                    val fragmentProfile = ProfileFragment()
+                    supportFragmentManager.beginTransaction()
+                        .addToBackStack("Profile")
+                        .add(R.id.container, fragmentProfile)
+                        .commitAllowingStateLoss()
                     true
                 }
-                else -> {
-                    true
-                }
-            }
+            else -> {
+                true
+            }            }
         }
     }
 
