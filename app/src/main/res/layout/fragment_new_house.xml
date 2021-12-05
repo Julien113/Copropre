@@ -33,6 +33,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Vous pouvez choisir le nom avec lequel vous apparaîtrez pour les autres members du foyer."
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etSurname"
+        android:hint="Votre surnom (Optionel)"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Blablabla du texte à rajouter blaaaaaaa blalba. Lorem Ipsummmm."
         />
     <Button

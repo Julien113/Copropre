@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.copropre.R
 import com.copropre.common.models.House
+import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.HouseService
 import com.copropre.databinding.FragmentNewHouseBinding
 import com.google.android.gms.tasks.OnCompleteListener
@@ -46,6 +47,11 @@ class NewHouseFragment : Fragment(), View.OnClickListener {
     }
 
     private fun createHouse() {
+        // get surname
+        var surname = binding.etSurname.text.toString()
+        if (surname.isBlank()) {
+            surname = AuthService.getCurrentUser().name
+        }
         // Check name is ok
         binding.tErrorName.visibility = View.GONE
         if (binding.etName.text.toString().isEmpty()) {
@@ -56,7 +62,7 @@ class NewHouseFragment : Fragment(), View.OnClickListener {
 
         // Create house
         val house = House(binding.etName.text.toString(), binding.etDescription.text.toString())
-        HouseService.createHouse(house, {
+        HouseService.createHouse(house, surname, {
             if (it.isSuccessful) {
                 Log.e("HOUSE", "Success")
                 goToNewHouseFragment(house);

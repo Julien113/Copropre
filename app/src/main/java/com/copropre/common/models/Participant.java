@@ -14,12 +14,14 @@ public class Participant extends DBClass {
     @Exclude
     private User user;
 
-    public Participant(String houseId, String userId, String userCreation, int totalValue) {
+    public Participant(String houseId, String userId, String surname, String userCreation, int totalValue) {
         this.houseId = houseId;
         this.userId = userId;
+        this.surname = surname;
         this.userCreation = userCreation;
         this.totalValue = totalValue;
     }
+    public Participant() {}
 
     public String getParticipantId() {
         return participantId;

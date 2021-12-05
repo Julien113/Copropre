@@ -6,28 +6,25 @@ import androidx.annotation.NonNull;
 
 import com.copropre.common.models.House;
 import com.copropre.common.models.Participant;
-import com.copropre.common.models.UserHouseLink;
 import com.copropre.common.services.AbstractService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class HouseService extends AbstractService {
     private static final String HOUSE_COLLECTION = "houses";
     private static final String PARTICIPANT_COLLECTION = "participants";
-    private static final String USER_HOUSE_LINK_COLLECTION = "user_house_link";
 
 
-    public static void createHouse(House house, OnCompleteListener<DocumentReference> onCompleteListener, OnFailureListener onFailureListener) {
+    public static void createHouse(House house, String participantSurname, OnCompleteListener<Void> onCompleteListener, OnFailureListener onFailureListener) {
         // vérifie que l'user est bien co
         if (auth.getCurrentUser() == null) {
             Log.e("HouseService", "createHouse: User isn't logged in");
@@ -46,16 +43,7 @@ public class HouseService extends AbstractService {
                     db.collection(HOUSE_COLLECTION).document(houseId).set(house).addOnFailureListener(onFailureListener);
 
                     // creer le participant
-                    addParticipant(houseId, auth.getUid()).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentReference> task) {
-                            if (task.isSuccessful()) {
-                                setUserHouseLink(houseId, auth.getUid()).addOnCompleteListener(onCompleteListener);
-                            } else {
-                                onFailureListener.onFailure(task.getException());
-                            }
-                        }
-                    });
+                    addParticipant(houseId, auth.getUid(), participantSurname, onCompleteListener, onFailureListener);
                 } else {
                     onFailureListener.onFailure(task.getException());
                 }
@@ -64,47 +52,59 @@ public class HouseService extends AbstractService {
     }
 
 
-    public static Task<DocumentReference> addParticipant(String houseId, String participantId) {
-        Participant participant = new Participant(houseId, participantId, auth.getUid(), 0);
+    public static Task<DocumentReference> addParticipant(String houseId, String participantId, String surname, OnCompleteListener<Void> onCompleteListener, OnFailureListener onFailureListener) {
+        Participant participant = new Participant(houseId, participantId, surname, auth.getUid(), 0);
         participant.setCreationDate(new Date());
         return db.collection(PARTICIPANT_COLLECTION).add(participant).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
             @Override
             public void onComplete(@NonNull Task<DocumentReference> task) {
                 if (task.isSuccessful()) {
                     //TODO peut etre faire ça en firebasefunction?
+                    Log.e("oncomplete","1");
                     String participantId = task.getResult().getId();
                     participant.setParticipantId(participantId);
-                    db.collection(PARTICIPANT_COLLECTION).document(participantId).set(participant);
+                    db.collection(PARTICIPANT_COLLECTION).document(participantId).set(participant).addOnCompleteListener(onCompleteListener).addOnFailureListener(onFailureListener);
                 }
             }
         });
-
     }
-
-    public static Task<DocumentReference> setUserHouseLink(String houseId, String userId) {
-
-        UserHouseLink userHouseLink = new UserHouseLink(userId, houseId, new Date(), true);
-        return db.collection(USER_HOUSE_LINK_COLLECTION).add(userHouseLink);
-    }
-
 
     public static Task<QuerySnapshot> getMyHouses(String userId, OnCompleteListener<QuerySnapshot> listener) {
-        return db.collection(USER_HOUSE_LINK_COLLECTION)
+        return db.collection(PARTICIPANT_COLLECTION)
                 .whereEqualTo("userId", userId)
-                .whereEqualTo("active", true)
+                //.whereEqualTo("active", true)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<UserHouseLink> userHouseLinks = queryDocumentSnapshots.toObjects(UserHouseLink.class);
-                        if (!userHouseLinks.isEmpty()) {
-                            List<String> houseIds = userHouseLinks
+                        List<Participant> participations = queryDocumentSnapshots.toObjects(Participant.class);
+                        if (!participations.isEmpty()) {
+                            List<String> houseIds = participations
                                     .stream()
-                                    .map(UserHouseLink::getHouseId)
+                                    .map(Participant::getHouseId)
                                     .collect(Collectors.toList());
                             db.collection(HOUSE_COLLECTION).whereIn("houseId", houseIds).get().addOnCompleteListener(listener);
                         }
                     }
                 });
+    }
+
+
+    public static Task<DocumentSnapshot> getHouse(String houseId) {
+        return  db.collection(HOUSE_COLLECTION).document(houseId).get();
+    }
+
+    public static Task<QuerySnapshot> getParticipant(String houseId, String userId) {
+        return  db.collection(PARTICIPANT_COLLECTION).whereEqualTo("houseId",houseId).whereEqualTo("userId",userId).get();
+    }
+
+    public static Task<QuerySnapshot> getParticipants(String houseId) {
+        return  db.collection(PARTICIPANT_COLLECTION).whereEqualTo("houseId",houseId).get();
+    }
+
+    public static Task<Void> addParticipantFromFictif(Participant participant, String userId) {
+        participant.setUserId(userId);
+        participant.setUpdateDate(new Date());
+        return db.collection(PARTICIPANT_COLLECTION).document(participant.getParticipantId()).set(participant);
     }
 }

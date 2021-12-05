@@ -2,7 +2,10 @@ package com.copropre
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.copropre.common.models.User
 import com.copropre.common.services.main.AuthService
+import com.copropre.common.services.main.UserService
 import com.copropre.databinding.ActivityMainBinding
 import com.copropre.main.house.list.HouseListFragment
 import com.copropre.main.login.LogInFragment
@@ -25,9 +28,17 @@ class MainActivity : AppCompatActivity() {
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = AuthService.getAuth().currentUser
+        val firebaseCurrentUser = AuthService.getAuth().currentUser
+        if (firebaseCurrentUser !== null) {
+            UserService.getUser(firebaseCurrentUser.uid).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    AuthService.setCurrentUser(it.result!!.toObject(User::class.java))
+                } else {
+                    it.exception!!.printStackTrace()
+                }
+            }
+        }
         setFragmentMain()
-        //setFragmentLogin()
     }
 
     fun setFragmentLogin() {

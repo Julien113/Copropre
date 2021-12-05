@@ -13,6 +13,7 @@ import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.HouseService
 import com.copropre.databinding.FragmentHouseListBinding
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.copropre.main.house.join.HouseJoinFragment
 import com.copropre.main.house.NewHouseFragment
 
 
@@ -83,7 +84,10 @@ class HouseListFragment : Fragment(), View.OnClickListener {
                     .commitAllowingStateLoss()
             }
             R.id.bJoinHouse -> {
-
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.container, HouseJoinFragment())
+                    .addToBackStack("joinHouse")
+                    .commitAllowingStateLoss()
             }
         }
     }
