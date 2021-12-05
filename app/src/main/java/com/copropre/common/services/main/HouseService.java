@@ -84,24 +84,26 @@ public class HouseService extends AbstractService {
     public static Task<DocumentReference> setUserHouseLink(String houseId, String userId) {
 
         UserHouseLink userHouseLink = new UserHouseLink(userId, houseId, new Date(), true);
-        return  db.collection(USER_HOUSE_LINK_COLLECTION).add(userHouseLink);
+        return db.collection(USER_HOUSE_LINK_COLLECTION).add(userHouseLink);
     }
 
 
     public static Task<QuerySnapshot> getMyHouses(String userId, OnCompleteListener<QuerySnapshot> listener) {
-        return  db.collection(USER_HOUSE_LINK_COLLECTION)
-                .whereEqualTo("userId",userId)
-                .whereEqualTo("active",true)
+        return db.collection(USER_HOUSE_LINK_COLLECTION)
+                .whereEqualTo("userId", userId)
+                .whereEqualTo("active", true)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         List<UserHouseLink> userHouseLinks = queryDocumentSnapshots.toObjects(UserHouseLink.class);
-                        List<String> houseIds = userHouseLinks
-                                .stream()
-                                .map(UserHouseLink::getHouseId)
-                                .collect(Collectors.toList());
-                        db.collection(HOUSE_COLLECTION).whereIn("houseId",houseIds).get().addOnCompleteListener(listener);
+                        if (!userHouseLinks.isEmpty()) {
+                            List<String> houseIds = userHouseLinks
+                                    .stream()
+                                    .map(UserHouseLink::getHouseId)
+                                    .collect(Collectors.toList());
+                            db.collection(HOUSE_COLLECTION).whereIn("houseId", houseIds).get().addOnCompleteListener(listener);
+                        }
                     }
                 });
     }
