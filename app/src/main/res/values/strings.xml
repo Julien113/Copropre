@@ -9,6 +9,16 @@
     <string name="content_description_login">Se connecter</string>
     <string name="logout">Se déconnecter</string>
     <string name="content_description_logout">Se déconnecter</string>
+    <string name="prenium">Prenium</string>
+    <string name="content_description_prenium">Acheter l\'application prenium et accéder à un service au poil</string>
+    <string name="profile">Profil</string>
+    <string name="content_description_profile">Accéder à son profil utilisateur</string>
+    <string name="shareApp">Partagez l\'app</string>
+    <string name="content_description_shareApp">Envoyer un lien de télechargement à vos contacts</string>
+    <string name="rateApp">Évaluez l\'app</string>
+    <string name="content_description_rateApp">Évaluez l\'application sur le playstore</string>
+    <string name="help">Aide</string>
+    <string name="content_description_help">Accéder au guide utilisateur</string>
 
     <string name="house_list_add_fab">Create/Join a house</string>
     <string name="house_list_add_house_fab">Create a house</string>

@@ -3,28 +3,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/mbFavorite"
-        android:icon="@drawable/outline_favorite_24"
-        android:title="@string/favorite"
-        android:contentDescription="@string/content_description_favorite"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/mbSearch"
-        android:icon="@drawable/outline_search_24"
-        android:title="@string/search"
-        android:contentDescription="@string/content_description_search"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/mbLogin"
         android:title="@string/login"
         android:contentDescription="@string/content_description_login"
         app:showAsAction="never" />
     <item
+        android:id="@+id/mbPrenium"
+        android:title="@string/prenium"
+        android:contentDescription="@string/content_description_prenium"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/mbLogout"
         android:title="@string/logout"
         android:contentDescription="@string/content_description_logout"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/mbProfile"
+        android:title="@string/profile"
+        android:contentDescription="@string/content_description_profile"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/mbShareApp"
+        android:title="@string/shareApp"
+        android:contentDescription="@string/content_description_shareApp"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/mbRateApp"
+        android:title="@string/rateApp"
+        android:contentDescription="@string/content_description_rateApp"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/mbHelp"
+        android:title="@string/help"
+        android:contentDescription="@string/content_description_help"
         app:showAsAction="never" />
 
 </menu>
