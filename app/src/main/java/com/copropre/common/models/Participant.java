@@ -6,6 +6,7 @@ public class Participant extends DBClass {
     String participantId;
     String houseId;
     String userId;
+    String surname;
     String userCreation;
     String userUpdate;
     int totalValue;
@@ -74,5 +75,13 @@ public class Participant extends DBClass {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 }

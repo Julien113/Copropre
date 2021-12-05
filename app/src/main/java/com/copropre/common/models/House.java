@@ -79,4 +79,19 @@ public class House extends DBClass {
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "creationDate=" + creationDate +
+                ", updateDate=" + updateDate +
+                ", houseId='" + houseId + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", userCreation='" + userCreation + '\'' +
+                ", userUpdate='" + userUpdate + '\'' +
+                ", participants=" + participants +
+                ", tasks=" + tasks +
+                '}';
+    }
 }

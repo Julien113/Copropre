@@ -59,7 +59,7 @@ class NewHouseFragment : Fragment(), View.OnClickListener {
         HouseService.createHouse(house, {
             if (it.isSuccessful) {
                 Log.e("HOUSE", "Success")
-                goBackFragmentMain();
+                goToNewHouseFragment(house);
             } else {
                 Log.e("HOUSE", "Fail")
 
@@ -71,8 +71,10 @@ class NewHouseFragment : Fragment(), View.OnClickListener {
 
     }
 
-    fun goBackFragmentMain() {
+    fun goToNewHouseFragment(house: House) {
         parentFragmentManager.beginTransaction()
+            .add(R.id.container, HouseFragment(house))
+            .addToBackStack("house")
             .detach(this)
             .commitAllowingStateLoss()
     }
