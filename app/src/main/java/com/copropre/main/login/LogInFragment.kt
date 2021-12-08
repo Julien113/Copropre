@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.copropre.R
+import com.copropre.common.models.User
 import com.copropre.common.services.main.AuthService
+import com.copropre.common.services.main.UserService
 import com.copropre.common.utils.Utils
 import com.copropre.databinding.FragmentLoginBinding
 
@@ -91,7 +93,14 @@ class LogInFragment: Fragment(), View.OnClickListener {
                     Log.d("LoginUser", "signInWithEmail:success")
                     //val user = auth.currentUser
                     //updateUI(user)
-                    goBackFragmentMain()
+                    UserService.getUser(AuthService.getAuth().uid).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            AuthService.setCurrentUser(it.result!!.toObject(User::class.java))
+                            goBackFragmentMain()
+                        } else {
+                            it.exception!!.printStackTrace()
+                        }
+                    }
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("LoginUser", "signInWithEmail:failure", task.exception)

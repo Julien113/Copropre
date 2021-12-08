@@ -1,5 +1,6 @@
 package com.copropre.main.house
 
+import android.app.ActionBar
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -64,7 +65,6 @@ class NewHouseFragment : Fragment(), View.OnClickListener {
         val house = House(binding.etName.text.toString(), binding.etDescription.text.toString())
         HouseService.createHouse(house, surname, {
             if (it.isSuccessful) {
-                Log.e("HOUSE", "Success")
                 goToNewHouseFragment(house);
             } else {
                 Log.e("HOUSE", "Fail")

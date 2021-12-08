@@ -14,7 +14,7 @@ public class House extends DBClass {
     @Exclude
     private List<Participant> participants;
     @Exclude
-    private List<Task> tasks;
+    private List<CPTask> CPTasks;
 
     public House() {
     }
@@ -72,12 +72,12 @@ public class House extends DBClass {
         this.participants = participants;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
+    public List<CPTask> getTasks() {
+        return CPTasks;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setTasks(List<CPTask> CPTasks) {
+        this.CPTasks = CPTasks;
     }
 
     @Override
@@ -91,7 +91,7 @@ public class House extends DBClass {
                 ", userCreation='" + userCreation + '\'' +
                 ", userUpdate='" + userUpdate + '\'' +
                 ", participants=" + participants +
-                ", tasks=" + tasks +
+                ", tasks=" + CPTasks +
                 '}';
     }
 }

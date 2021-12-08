@@ -93,7 +93,7 @@ class SignInFragment : Fragment(), View.OnClickListener {
                     Log.w("createUser", "createUserWithEmail:failure", task.exception)
                     Toast.makeText(activity, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
-                    emailErrors.add(task.exception!!.localizedMessage)
+                    emailErrors.add(task.exception!!.localizedMessage!!)
                     setEmailErrorAndPasswordErrorText()
                     //updateUI(null)
                 }
@@ -124,6 +124,7 @@ class SignInFragment : Fragment(), View.OnClickListener {
     fun createAccount(name: String?, email: String, uid: String) {
         val user = User(email, uid, name)
         UserService.createUser(user)
+        AuthService.setCurrentUser(user)
     }
 
 }

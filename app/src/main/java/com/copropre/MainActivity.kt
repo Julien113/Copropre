@@ -3,6 +3,7 @@ package com.copropre
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.content.res.AppCompatResources
 import com.copropre.common.models.User
 import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.UserService

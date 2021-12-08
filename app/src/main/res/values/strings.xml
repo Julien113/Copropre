@@ -27,4 +27,8 @@
     <string name="house_tab_tasks">Taches</string>
     <string name="house_tab_history">Historique</string>
     <string name="house_tab_balance">Equilibre</string>
+
+    <string name="house_tasks_add_task_fab">Nouvelle tache</string>
+
+    <string name="task_new_select_date">"Select date"</string>
 </resources>
