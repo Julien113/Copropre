@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.copropre.R
 import com.copropre.common.models.CPTask
 import com.copropre.common.models.House
+import com.copropre.common.services.common.TopBarService
 import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.HouseService
 import com.copropre.common.services.main.TaskService
@@ -39,6 +40,7 @@ class HouseTasksFragment(private val house: House) : Fragment(), View.OnClickLis
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        TopBarService.changeTopBar(TopBarService.FragmentName.FRAGMENT_HOUSE_TASK)
         binding.bNewTask.setOnClickListener(this)
 
         taskListAdapter = TaskListAdapter(taskList, house,this)

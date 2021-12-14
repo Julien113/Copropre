@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.copropre.R
+import com.copropre.common.services.common.TopBarService
 import com.copropre.common.services.main.AuthService
 import com.copropre.common.utils.Utils
 import com.copropre.databinding.FragmentLoginBinding
@@ -31,6 +32,7 @@ class ProfileFragment: Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        TopBarService.changeTopBar(TopBarService.FragmentName.FRAGMENT_PROFILE)
         binding.tUserName.text = AuthService.getCurrentUser().name
         binding.tUserMail.text = AuthService.getCurrentUser().mail
         binding.bLogOut.setOnClickListener(this)

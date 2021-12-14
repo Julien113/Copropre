@@ -13,6 +13,7 @@ import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.HouseService
 import com.copropre.databinding.FragmentHouseListBinding
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.copropre.common.services.common.TopBarService
 import com.copropre.main.house.join.HouseJoinFragment
 import com.copropre.main.house.NewHouseFragment
 
@@ -37,6 +38,7 @@ class HouseListFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        TopBarService.changeTopBar(TopBarService.FragmentName.FRAGMENT_HOUSE_LIST)
         binding.bAddJoinHouse.setOnClickListener(this)
         binding.bCreateHouse.setOnClickListener(this)
         binding.bJoinHouse.setOnClickListener(this)

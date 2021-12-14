@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.copropre.R
 import com.copropre.common.models.CPTask
 import com.copropre.common.models.House
+import com.copropre.common.services.common.TopBarService
 import com.copropre.common.services.main.HouseService
 import com.copropre.common.services.main.TaskService
 import com.copropre.common.services.main.TaskService.getHouseTasks
@@ -45,6 +46,7 @@ class NewTaskFragment(private val house: House, private val houseTasksFragment: 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        TopBarService.changeTopBar(TopBarService.FragmentName.FRAGMENT_NEW_TASK)
         binding.bCreateTask.setOnClickListener(this)
         binding.sliderScore.addOnChangeListener { _: Slider, value: Float, _: Boolean ->
             binding.tScore.text = value.toInt().toString()

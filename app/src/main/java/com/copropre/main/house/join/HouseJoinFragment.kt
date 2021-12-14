@@ -12,6 +12,7 @@ import com.copropre.R
 import com.copropre.common.models.House
 import com.copropre.common.models.Participant
 import com.copropre.common.services.AbstractService
+import com.copropre.common.services.common.TopBarService
 import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.HouseService
 import com.copropre.databinding.FragmentHouseJoinBinding
@@ -37,6 +38,7 @@ class HouseJoinFragment() : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        TopBarService.changeTopBar(TopBarService.FragmentName.FRAGMENT_HOUSE_JOIN)
         binding.bJoin.setOnClickListener(this)
         binding.bJoin2.setOnClickListener(this)
 

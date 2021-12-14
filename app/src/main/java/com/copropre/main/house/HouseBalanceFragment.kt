@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.copropre.R
 import com.copropre.common.models.House
+import com.copropre.common.services.common.TopBarService
 import com.copropre.common.services.main.HouseService
 import com.copropre.databinding.FragmentHouseBalanceBinding
 import com.copropre.databinding.FragmentNewHouseBinding
@@ -29,6 +30,7 @@ class HouseBalanceFragment(private val house: House) : Fragment(), View.OnClickL
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        TopBarService.changeTopBar(TopBarService.FragmentName.FRAGMENT_HOUSE_BALANCE)
         // binding.bCreate.setOnClickListener(this)
     }
 

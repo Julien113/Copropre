@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.copropre.R
 import com.copropre.common.models.User
+import com.copropre.common.services.common.TopBarService
 import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.UserService
 import com.copropre.common.utils.Utils
@@ -32,6 +33,7 @@ class SignInFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        TopBarService.changeTopBar(TopBarService.FragmentName.FRAGMENT_SIGNIN)
         binding.bSignIn.setOnClickListener(this)
     }
 

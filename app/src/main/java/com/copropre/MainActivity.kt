@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.content.res.AppCompatResources
 import com.copropre.common.models.User
+import com.copropre.common.services.common.TopBarService
 import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.UserService
 import com.copropre.databinding.ActivityMainBinding
@@ -44,14 +45,6 @@ class MainActivity : AppCompatActivity() {
         setFragmentMain()
     }
 
-    fun setFragmentLogin() {
-        val fragmentLogin = LogInFragment();
-        supportFragmentManager.beginTransaction()
-            .add(R.id.container, fragmentLogin)
-            .addToBackStack("login")
-            .commitAllowingStateLoss()
-    }
-
     fun setFragmentMain() {
         val fragment = HouseListFragment();
         supportFragmentManager.beginTransaction()
@@ -66,29 +59,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initTopBar() {
-        binding.topAppBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.mbLogin -> {
-                    setFragmentLogin()
-                    true
-                }
-                R.id.mbLogout -> {
-                    AuthService.getAuth().signOut()
-                    setFragmentLogin()
-                    true
-                }
-                R.id.mbProfile -> {
-                    val fragmentProfile = ProfileFragment()
-                    supportFragmentManager.beginTransaction()
-                        .addToBackStack("Profile")
-                        .add(R.id.container, fragmentProfile)
-                        .commitAllowingStateLoss()
-                    true
-                }
-            else -> {
-                true
-            }            }
-        }
+        TopBarService.topBar = binding.topAppBar
+        TopBarService.initTopBar(supportFragmentManager)
+        return
+
     }
 
 
