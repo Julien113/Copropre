@@ -4,17 +4,20 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.copropre.R
 import com.copropre.common.models.CPTask
 import com.copropre.common.models.House
+import com.copropre.common.services.main.AuthService
+import com.copropre.common.services.main.TaskService
 import com.copropre.common.utils.Utils
 import com.copropre.databinding.AdapterHouseListBinding
 import com.copropre.databinding.AdapterTaskListBinding
 import com.copropre.main.house.HouseFragment
 
-class TaskListAdapter (private val dataSet: MutableList<CPTask>, private val fragment: Fragment) :
+class TaskListAdapter (private val dataSet: MutableList<CPTask>, private val house: House, private val fragment: Fragment) :
     RecyclerView.Adapter<TaskListAdapter.ViewHolder>(){
     private var _binding: AdapterTaskListBinding? = null
     private val binding get() = _binding!!
@@ -41,12 +44,30 @@ class TaskListAdapter (private val dataSet: MutableList<CPTask>, private val fra
         // contents of the view with that element
         val task = dataSet[position]
         viewHolder.binding.tName.text = task.name
-        if (task.nextDate !== null){
+        if (task.nextDate !== null) {
             viewHolder.binding.tDate.text = Utils.dateFormatDdMMHH.format(task.nextDate)
         } else {
-            viewHolder.binding.tDate.text = ""
+            if (task.lastDate !== null) {
+                val nextDateText = "Fait la derniere fois le " + Utils.dateFormatDdMMHH.format(task.lastDate)
+                viewHolder.binding.tDate.text = nextDateText
+            } else {
+                viewHolder.binding.tDate.text = ""
+            }
         }
         viewHolder.binding.bDoTask.setOnClickListener {
+            if (house.myParticipant !== null) {
+                TaskService.completeTask(task, AuthService.getCurrentUser().userId, house.myParticipant.participantId, {
+                    if (it.isSuccessful) {
+                        Toast.makeText(fragment.context, "ok.", Toast.LENGTH_SHORT).show()
+                    }
+
+                }, {
+                    it.printStackTrace()
+                    Toast.makeText(fragment.context, "Could not do the Task. Please try again later.", Toast.LENGTH_LONG).show()
+                })
+            } else {
+                Toast.makeText(fragment.context, "Could not do the Task. Please reload App.", Toast.LENGTH_LONG).show()
+            }
 
         }
     }

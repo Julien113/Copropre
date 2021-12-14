@@ -23,7 +23,7 @@ public class Utils {
     public final static Comparator<CPTask> sortTaskByDate = new Comparator<CPTask>() {
         public int compare(CPTask t1, CPTask t2) {
             if (t1.getNextDate()== null && t2.getNextDate() == null) {
-                return 0;
+                return compareTaskByLastDate(t1, t2);
             }
             if (t1.getNextDate() == null) {
                 return 1;
@@ -35,4 +35,17 @@ public class Utils {
         }
 
         };
-    };
+
+    private final static int compareTaskByLastDate(CPTask t1, CPTask t2) {
+        if (t1.getLastDate()== null && t2.getLastDate() == null) {
+            return 0;
+        }
+        if (t1.getLastDate() == null) {
+            return -1;
+        }
+        if (t2.getLastDate() == null) {
+            return 1;
+        }
+        return t1.getLastDate().compareTo(t2.getLastDate());
+    }
+}

@@ -15,6 +15,8 @@ public class House extends DBClass {
     private List<Participant> participants;
     @Exclude
     private List<CPTask> CPTasks;
+    @Exclude
+    public Participant myParticipant;
 
     public House() {
     }

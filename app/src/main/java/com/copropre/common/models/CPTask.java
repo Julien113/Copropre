@@ -11,10 +11,12 @@ public class CPTask extends DBClass{
     String userCreation;
     String userUpdate;
     int value;
-    int periodicity;
+    Integer periodicity;
     Date nextDate;
 
-    public CPTask(String houseId, String name, int value, int periodicity, Date dateFirst) {
+    Date lastDate;
+
+    public CPTask(String houseId, String name, int value, Integer periodicity, Date dateFirst) {
         this.houseId = houseId;
         this.name = name;
         this.value = value;
@@ -81,11 +83,11 @@ public class CPTask extends DBClass{
         this.value = value;
     }
 
-    public int getPeriodicity() {
+    public Integer getPeriodicity() {
         return periodicity;
     }
 
-    public void setPeriodicity(int periodicity) {
+    public void setPeriodicity(Integer periodicity) {
         this.periodicity = periodicity;
     }
 
@@ -95,5 +97,13 @@ public class CPTask extends DBClass{
 
     public void setNextDate(Date nextDate) {
         this.nextDate = nextDate;
+    }
+
+    public Date getLastDate() {
+        return lastDate;
+    }
+
+    public void setLastDate(Date lastDate) {
+        this.lastDate = lastDate;
     }
 }

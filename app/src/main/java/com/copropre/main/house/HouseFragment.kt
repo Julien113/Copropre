@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.copropre.R
 import com.copropre.common.models.House
+import com.copropre.common.models.Participant
+import com.copropre.common.services.main.AuthService
+import com.copropre.common.services.main.HouseService
 import com.copropre.databinding.FragmentHouseBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -46,6 +49,14 @@ class HouseFragment(private val house: House): Fragment(), View.OnClickListener 
                 }
             }
         }.attach()
+
+        HouseService.getParticipant(house.houseId, AuthService.getCurrentUser().userId).addOnSuccessListener {
+            if (!it.isEmpty) {
+                house.myParticipant = it.documents[0].toObject(Participant::class.java)
+            } else {
+                Log.e("HouseFragment", "Error while finding mParticipant")
+            }
+        }
 
     }
 

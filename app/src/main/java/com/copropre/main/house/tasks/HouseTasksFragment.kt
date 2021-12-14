@@ -41,7 +41,7 @@ class HouseTasksFragment(private val house: House) : Fragment(), View.OnClickLis
         super.onCreate(savedInstanceState)
         binding.bNewTask.setOnClickListener(this)
 
-        taskListAdapter = TaskListAdapter(taskList, this)
+        taskListAdapter = TaskListAdapter(taskList, house,this)
         binding.rvTasks.adapter = taskListAdapter
         var linearLayoutManager = LinearLayoutManager(context)
         binding.rvTasks.layoutManager = linearLayoutManager
@@ -68,9 +68,9 @@ class HouseTasksFragment(private val house: House) : Fragment(), View.OnClickLis
                 Log.e("TaskList", "Can get house Tasks list")
                 it.exception!!.printStackTrace()
             }
-
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

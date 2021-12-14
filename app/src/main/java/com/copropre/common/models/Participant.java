@@ -86,4 +86,5 @@ public class Participant extends DBClass {
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
 }

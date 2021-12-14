@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 public class HouseService extends AbstractService {
     private static final String HOUSE_COLLECTION = "houses";
-    private static final String PARTICIPANT_COLLECTION = "participants";
+    public static final String PARTICIPANT_COLLECTION = "participants";
 
 
     public static void createHouse(House house, String participantSurname, OnCompleteListener<Void> onCompleteListener, OnFailureListener onFailureListener) {
@@ -69,8 +69,8 @@ public class HouseService extends AbstractService {
         });
     }
 
-    public static Task<QuerySnapshot> getMyHouses(String userId, OnCompleteListener<QuerySnapshot> listener) {
-        return db.collection(PARTICIPANT_COLLECTION)
+    public static void getMyHouses(String userId, OnCompleteListener<QuerySnapshot> listener) {
+        db.collection(PARTICIPANT_COLLECTION)
                 .whereEqualTo("userId", userId)
                 //.whereEqualTo("active", true)
                 .get()
