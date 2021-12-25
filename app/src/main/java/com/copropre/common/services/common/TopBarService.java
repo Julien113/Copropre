@@ -1,5 +1,6 @@
 package com.copropre.common.services.common;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,8 +58,20 @@ public class TopBarService {
         });
     }
 
+    public static void changeTopBar(FragmentName fragmentName, String topBarTitle){
+
+        changeTopBar(fragmentName);
+
+        topBar.setTitle(topBarTitle);
+        Log.d("poste appelage", "changeTopBar: ");
+
+    }
+
     public static void changeTopBar(FragmentName fragmentName){
         Menu menu = topBar.getMenu();
+
+        Log.d("appelage", "changeTopBar: ");
+
 
         // Option:
         // mbLogin
@@ -68,18 +81,66 @@ public class TopBarService {
         // mbShareApp
         // mbHelp
         //
+
+
         menu.setGroupVisible(0, false);
+        switch (fragmentName) {
+            case FRAGMENT_LOGIN:
+            case FRAGMENT_HOUSE_LIST:
+                topBar.setTitle(R.string.app_name);
+                break;
+        }
         switch (fragmentName) {
             case FRAGMENT_LOGIN:
                 menu.findItem(R.id.mbRateApp).setVisible(true);
             case FRAGMENT_SIGNIN:
                 break;
+            case FRAGMENT_HOUSE:
             case FRAGMENT_HOUSE_JOIN:
             case FRAGMENT_HOUSE_LIST:
             case FRAGMENT_NEW_TASK:
             case FRAGMENT_HOUSE_TASK:
             case FRAGMENT_HOUSE_BALANCE:
-            case FRAGMENT_HOUSE:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             case FRAGMENT_HOUSE_HISTORY:
             case FRAGMENT_NEW_HOUSE:
             case FRAGMENT_PROFILE:
@@ -91,5 +152,4 @@ public class TopBarService {
                 break;
         }
     }
-
 }

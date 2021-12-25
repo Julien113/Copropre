@@ -40,7 +40,7 @@ class HouseListAdapter (private val dataSet: MutableList<House>, private val fra
         viewHolder.binding.layout.setOnClickListener {
             fragment.parentFragmentManager
                 .beginTransaction()
-                .add(R.id.container, HouseFragment(dataSet.get(position)))
+                .replace(R.id.container, HouseFragment(dataSet.get(position)))
                 .addToBackStack("house")
                 .commitAllowingStateLoss()
 

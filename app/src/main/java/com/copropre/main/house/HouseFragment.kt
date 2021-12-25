@@ -30,7 +30,8 @@ class HouseFragment(private val house: House): Fragment(), View.OnClickListener 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        TopBarService.changeTopBar(TopBarService.FragmentName.FRAGMENT_HOUSE)
+
+        TopBarService.changeTopBar(TopBarService.FragmentName.FRAGMENT_HOUSE, house.name)
 
 
         val pagerAdapter = HousePageAdapter(this, house)
