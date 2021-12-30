@@ -3,21 +3,16 @@ package com.copropre.common.services.common;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
-import com.copropre.MainActivity;
 import com.copropre.R;
 import com.copropre.common.services.main.AuthService;
 import com.copropre.main.login.LogInFragment;
+import com.copropre.main.parameters.HelpFragment;
 import com.copropre.main.parameters.ProfileFragment;
 import com.google.android.material.appbar.MaterialToolbar;
-
-import java.util.List;
 
 public class TopBarService {
     public static MaterialToolbar topBar;
@@ -47,9 +42,15 @@ public class TopBarService {
                         ProfileFragment fragmentProfile = new ProfileFragment();
                         supportFragmentManager.beginTransaction()
                                 .addToBackStack("Profile")
-                                .add(R.id.container, fragmentProfile)
+                                .replace(R.id.container, fragmentProfile)
                                 .commitAllowingStateLoss();
                         break;
+                    case R.id.mbHelp:
+                        HelpFragment fragmentHelp = new HelpFragment();
+                        supportFragmentManager.beginTransaction()
+                                .addToBackStack("Help")
+                                .replace(R.id.container, fragmentHelp)
+                                .commitAllowingStateLoss();
                     default:
                         break;
                 }
@@ -95,53 +96,8 @@ public class TopBarService {
                 menu.findItem(R.id.mbRateApp).setVisible(true);
             case FRAGMENT_SIGNIN:
                 break;
-            case FRAGMENT_HOUSE:
             case FRAGMENT_HOUSE_JOIN:
             case FRAGMENT_HOUSE_LIST:
-            case FRAGMENT_NEW_TASK:
-            case FRAGMENT_HOUSE_TASK:
-            case FRAGMENT_HOUSE_BALANCE:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            case FRAGMENT_HOUSE_HISTORY:
             case FRAGMENT_NEW_HOUSE:
             case FRAGMENT_PROFILE:
                 menu.findItem(R.id.mbPremium).setVisible(true);
@@ -149,6 +105,17 @@ public class TopBarService {
                 menu.findItem(R.id.mbProfile).setVisible(true);
                 menu.findItem(R.id.mbShareApp).setVisible(true);
                 menu.findItem(R.id.mbRateApp).setVisible(true);
+                break;
+            // HOUSE BLOCK
+            case FRAGMENT_NEW_TASK:
+            case FRAGMENT_HOUSE_TASK:
+            case FRAGMENT_HOUSE_BALANCE:
+            case FRAGMENT_HOUSE_HISTORY:
+            case FRAGMENT_HOUSE:
+                menu.findItem(R.id.mbPremium).setVisible(true);
+                menu.findItem(R.id.mbInvitation).setVisible(true);
+                menu.findItem(R.id.mbChangeHouse).setVisible(true);
+                menu.findItem(R.id.mbHelp).setVisible(true);
                 break;
         }
     }

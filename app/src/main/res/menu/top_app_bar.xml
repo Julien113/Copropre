@@ -8,6 +8,16 @@
         android:contentDescription="@string/content_description_login"
         app:showAsAction="never" />
     <item
+        android:id="@+id/mbChangeHouse"
+        android:title="@string/modifyHouse"
+        android:contentDescription="@string/content_description_modifyHouse"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/mbInvitation"
+        android:title="@string/invitation"
+        android:contentDescription="@string/content_description_invitation"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/mbPremium"
         android:title="@string/premium"
         android:contentDescription="@string/content_description_premium"
