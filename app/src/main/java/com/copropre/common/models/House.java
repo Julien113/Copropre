@@ -2,6 +2,7 @@ package com.copropre.common.models;
 
 import com.google.firebase.firestore.Exclude;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class House extends DBClass {
@@ -12,7 +13,7 @@ public class House extends DBClass {
     String userUpdate;
 
     @Exclude
-    private List<Participant> participants;
+    private List<Participant> participants = new ArrayList<>();
     @Exclude
     private List<CPTask> CPTasks;
     @Exclude
