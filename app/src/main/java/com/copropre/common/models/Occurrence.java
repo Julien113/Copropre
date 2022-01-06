@@ -1,20 +1,29 @@
 package com.copropre.common.models;
 
-public class Occurence extends DBClass {
+import com.google.firebase.firestore.Exclude;
+
+public class Occurrence extends DBClass {
     // a changer aussi dans TaskService l77 si changement
     String occurenceId;
     String taskId;
+    String houseId;
     int value;
     String userCreation;
     String userUpdate;
     String participant;
 
-    public Occurence() {
+    @Exclude
+    CPTask localTask;
+    @Exclude
+    Participant localParticipant;
+
+    public Occurrence() {
     }
 
-    public Occurence(String taskId, int value, String userCreation, String participant) {
+    public Occurrence(String taskId, int value, String userCreation, String houseId, String participant) {
         this.taskId = taskId;
         this.value = value;
+        this.houseId = houseId;
         this.userCreation = userCreation;
         this.participant = participant;
     }
@@ -66,4 +75,30 @@ public class Occurence extends DBClass {
     public void setParticipant(String participant) {
         this.participant = participant;
     }
+
+    public CPTask getLocalTask() {
+        return localTask;
+    }
+
+    public void setLocalTask(CPTask localTask) {
+        this.localTask = localTask;
+    }
+
+    public Participant getLocalParticipant() {
+        return localParticipant;
+    }
+
+    public void setLocalParticipant(Participant localParticipant) {
+        this.localParticipant = localParticipant;
+    }
+
+    public String getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(String houseId) {
+        this.houseId = houseId;
+    }
+
+
 }

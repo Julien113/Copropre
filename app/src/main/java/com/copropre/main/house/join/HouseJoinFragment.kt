@@ -45,7 +45,7 @@ class HouseJoinFragment() : Fragment(), View.OnClickListener {
         adapterPartifipantsFictif =
             HouseJoinPartifipantsFictifsAdapter(participantsFictifs, this)
         binding.rvParticipantsFictifs.adapter = adapterPartifipantsFictif
-        var linearLayoutManager = LinearLayoutManager(context)
+        val linearLayoutManager = LinearLayoutManager(context)
         binding.rvParticipantsFictifs.layoutManager = linearLayoutManager
 
         val dividerItemDecoration = DividerItemDecoration(

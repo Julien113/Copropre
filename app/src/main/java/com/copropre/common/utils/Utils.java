@@ -3,9 +3,9 @@ package com.copropre.common.utils;
 import android.text.TextUtils;
 
 import com.copropre.common.models.CPTask;
+import com.copropre.common.models.Occurrence;
 
 import java.text.DateFormat;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class Utils {
@@ -22,7 +22,7 @@ public class Utils {
 
     public final static Comparator<CPTask> sortTaskByDate = new Comparator<CPTask>() {
         public int compare(CPTask t1, CPTask t2) {
-            if (t1.getNextDate()== null && t2.getNextDate() == null) {
+            if (t1.getNextDate() == null && t2.getNextDate() == null) {
                 return compareTaskByLastDate(t1, t2);
             }
             if (t1.getNextDate() == null) {
@@ -35,9 +35,8 @@ public class Utils {
         }
 
         };
-
     private final static int compareTaskByLastDate(CPTask t1, CPTask t2) {
-        if (t1.getLastDate()== null && t2.getLastDate() == null) {
+        if (t1.getLastDate() == null && t2.getLastDate() == null) {
             return 0;
         }
         if (t1.getLastDate() == null) {
@@ -48,4 +47,20 @@ public class Utils {
         }
         return t1.getLastDate().compareTo(t2.getLastDate());
     }
+
+    public final static Comparator<Occurrence> sortOccurrenceByDate = new Comparator<Occurrence>() {
+        public int compare(Occurrence o1, Occurrence o2) {
+            if (o1.getCreationDate() == null && o2.getCreationDate() == null) {
+                return 0;
+            }
+            if (o1.getCreationDate() == null) {
+                return 1;
+            }
+            if (o1.getCreationDate() == null) {
+                return -1;
+            }
+            return o1.getCreationDate().compareTo(o2.getCreationDate());
+        }
+    };
+
 }

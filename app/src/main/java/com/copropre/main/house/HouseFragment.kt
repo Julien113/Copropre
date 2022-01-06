@@ -55,7 +55,7 @@ class HouseFragment(private val house: House): Fragment(), View.OnClickListener 
 
         HouseService.getParticipant(house.houseId, AuthService.getCurrentUser().userId).addOnSuccessListener {
             if (!it.isEmpty) {
-                house.myParticipant = it.documents[0].toObject(Participant::class.java)
+                house.localMyParticipant = it.documents[0].toObject(Participant::class.java)
             } else {
                 Log.e("HouseFragment", "Error while finding mParticipant")
             }

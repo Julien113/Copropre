@@ -3,16 +3,12 @@ package com.copropre.common.services.main;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.copropre.common.models.CPTask;
-import com.copropre.common.models.House;
-import com.copropre.common.models.Occurence;
-import com.copropre.common.models.Participant;
+import com.copropre.common.models.Occurrence;
 import com.copropre.common.services.AbstractService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -25,11 +21,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class TaskService extends AbstractService {
     private static final String TASK_COLLECTION = "tasks";
-    private static final String OCCURENCE_COLLECTION = "occurences";
+    private static final String OCCURRENCE_COLLECTION = "occurences";
 
 
     public static void createTask(CPTask cpTask, OnCompleteListener<Void> onCompleteListener, OnFailureListener onFailureListener) {
@@ -64,10 +59,11 @@ public class TaskService extends AbstractService {
     }
 
     public static void completeTask(CPTask cpTask, String uid, String participantId, OnCompleteListener<Void> onCompleteListener, OnFailureListener onFailureListener) {
-        Occurence occurence = new Occurence(cpTask.getTaskId(),cpTask.getValue(), uid, participantId);
+        Occurrence occurrence = new Occurrence(cpTask.getTaskId(),cpTask.getValue(), uid, cpTask.getHouseId(),participantId);
+        occurrence.setCreationDate(new Date());
 
-        db.collection(OCCURENCE_COLLECTION)
-                .add(occurence)
+        db.collection(OCCURRENCE_COLLECTION)
+                .add(occurrence)
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
@@ -76,13 +72,13 @@ public class TaskService extends AbstractService {
                             db.runTransaction(new Transaction.Function<Void>() {
                                 @Override
                                 public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
-                                    occurence.setOccurenceId(task.getResult().getId());
+                                    occurrence.setOccurenceId(task.getResult().getId());
 
                                     // prepare
                                     DocumentSnapshot participantSnap = transaction.get(db.collection(HouseService.PARTICIPANT_COLLECTION).document(participantId));
                                     long participantTotalValue = participantSnap.getLong("totalValue") + cpTask.getValue();
 
-                                    transaction.update(db.collection(OCCURENCE_COLLECTION).document(occurence.getOccurenceId()), "occurenceId", task.getResult().getId());
+                                    transaction.update(db.collection(OCCURRENCE_COLLECTION).document(occurrence.getOccurenceId()), "occurenceId", task.getResult().getId());
 
                                     // met a jour la prochaine date de la tache
                                     Date currentDate = new Date();
@@ -117,6 +113,14 @@ public class TaskService extends AbstractService {
                         }
                     }
                 });
+    }
+
+    public static Task<QuerySnapshot> getOccurencesOfHouse(String houseId) {
+        return db.collection(OCCURRENCE_COLLECTION).whereEqualTo("houseId",houseId).get();
+    }
+
+    public static Task<QuerySnapshot> getMultipleTasks(List<String> taskIds) {
+        return db.collection(TASK_COLLECTION).whereIn("taskId",taskIds).get();
     }
 
 

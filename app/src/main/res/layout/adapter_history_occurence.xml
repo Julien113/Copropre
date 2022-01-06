@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/llTop">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:id="@+id/tTaskName"
+            android:text="Passer le baladdddddddds"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="middle"
+            android:id="@+id/tHasBeenDone"
+            android:text=" fait par "
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:id="@+id/tNameUser"
+            android:text="Julien coulidjango"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tPoints"
+        android:layout_below="@id/llTop"
+        android:text="3"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tTxtPoints"
+        android:layout_toEndOf="@id/tPoints"
+        android:layout_below="@id/llTop"
+        android:text=" Points"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tDate"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/llTop"
+        android:text="12/12/24"
+        />
+
+
+</RelativeLayout>

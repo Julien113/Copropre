@@ -13,11 +13,11 @@ public class House extends DBClass {
     String userUpdate;
 
     @Exclude
-    private List<Participant> participants = new ArrayList<>();
+    private List<Participant> localParticipants = new ArrayList<>();
     @Exclude
-    private List<CPTask> CPTasks;
+    private List<CPTask> localCPTasks;
     @Exclude
-    public Participant myParticipant;
+    public Participant localMyParticipant;
 
     public House() {
     }
@@ -68,19 +68,19 @@ public class House extends DBClass {
     }
 
     public List<Participant> getParticipants() {
-        return participants;
+        return localParticipants;
     }
 
     public void setParticipants(List<Participant> participants) {
-        this.participants = participants;
+        this.localParticipants = participants;
     }
 
     public List<CPTask> getTasks() {
-        return CPTasks;
+        return localCPTasks;
     }
 
     public void setTasks(List<CPTask> CPTasks) {
-        this.CPTasks = CPTasks;
+        this.localCPTasks = CPTasks;
     }
 
     @Override
@@ -93,8 +93,8 @@ public class House extends DBClass {
                 ", description='" + description + '\'' +
                 ", userCreation='" + userCreation + '\'' +
                 ", userUpdate='" + userUpdate + '\'' +
-                ", participants=" + participants +
-                ", tasks=" + CPTasks +
+                ", participants=" + localParticipants +
+                ", tasks=" + localCPTasks +
                 '}';
     }
 }

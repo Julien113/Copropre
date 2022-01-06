@@ -25,8 +25,6 @@ class BalanceView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         mpaint.color = Color.BLACK
         mpaint.strokeWidth = 4f
 
-        Log.e("top", " "+this.height+"   e"+this.width)
-        Log.e("top", " "+value+ "  a"+average+"   mo"+maxOffset)
 
         //top
         canvas?.drawLine(paddingSide,0f, this.width.toFloat()-paddingSide, 0f, mpaint)

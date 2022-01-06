@@ -13,7 +13,7 @@ public class User extends DBClass{
     boolean sudoer;
 
     @Exclude
-    private List<House> houses;
+    private List<House> localHouses;
 
     User() {
     }

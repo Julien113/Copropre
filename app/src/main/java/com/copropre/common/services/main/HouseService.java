@@ -102,6 +102,9 @@ public class HouseService extends AbstractService {
         return  db.collection(PARTICIPANT_COLLECTION).whereEqualTo("houseId",houseId).get();
     }
 
+    public static Task<QuerySnapshot> getMultipleParticipants(List<String> participantsIds) {
+        return db.collection(PARTICIPANT_COLLECTION).whereIn("participantId",participantsIds).get();
+    }
     public static Task<Void> addParticipantFromFictif(Participant participant, String userId) {
         participant.setUserId(userId);
         participant.setUpdateDate(new Date());

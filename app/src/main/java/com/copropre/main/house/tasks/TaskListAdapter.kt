@@ -1,21 +1,17 @@
 package com.copropre.main.house.tasks
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.copropre.R
 import com.copropre.common.models.CPTask
 import com.copropre.common.models.House
 import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.TaskService
 import com.copropre.common.utils.Utils
-import com.copropre.databinding.AdapterHouseListBinding
 import com.copropre.databinding.AdapterTaskListBinding
-import com.copropre.main.house.HouseFragment
 
 class TaskListAdapter (private val dataSet: MutableList<CPTask>, private val house: House, private val fragment: Fragment) :
     RecyclerView.Adapter<TaskListAdapter.ViewHolder>(){
@@ -55,8 +51,8 @@ class TaskListAdapter (private val dataSet: MutableList<CPTask>, private val hou
             }
         }
         viewHolder.binding.bDoTask.setOnClickListener {
-            if (house.myParticipant !== null) {
-                TaskService.completeTask(task, AuthService.getCurrentUser().userId, house.myParticipant.participantId, {
+            if (house.localMyParticipant !== null) {
+                TaskService.completeTask(task, AuthService.getCurrentUser().userId, house.localMyParticipant.participantId, {
                     if (it.isSuccessful) {
                         Toast.makeText(fragment.context, "ok.", Toast.LENGTH_SHORT).show()
                     }

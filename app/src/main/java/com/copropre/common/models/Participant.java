@@ -12,7 +12,7 @@ public class Participant extends DBClass {
     int totalValue;
 
     @Exclude
-    private User user;
+    private User localUser;
 
     public Participant(String houseId, String userId, String surname, String userCreation, int totalValue) {
         this.houseId = houseId;
@@ -71,12 +71,12 @@ public class Participant extends DBClass {
         this.totalValue = totalValue;
     }
 
-    public User getUser() {
-        return user;
+    public User getLocalUser() {
+        return localUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setLocalUser(User localUser) {
+        this.localUser = localUser;
     }
 
     public String getSurname() {
