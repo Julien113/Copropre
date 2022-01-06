@@ -115,7 +115,7 @@ public class TaskService extends AbstractService {
                 });
     }
 
-    public static Task<QuerySnapshot> getOccurencesOfHouse(String houseId) {
+    public static Task<QuerySnapshot> getOccurrencesOfHouse(String houseId) {
         return db.collection(OCCURRENCE_COLLECTION).whereEqualTo("houseId",houseId).get();
     }
 

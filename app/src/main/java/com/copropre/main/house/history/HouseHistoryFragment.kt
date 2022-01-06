@@ -68,7 +68,7 @@ class HouseHistoryFragment(private val house: House) : Fragment(), View.OnClickL
     }
 
     private fun getHouseOccurrences() {
-        TaskService.getOccurencesOfHouse(house.houseId).addOnCompleteListener{
+        TaskService.getOccurrencesOfHouse(house.houseId).addOnCompleteListener{
             if (it.isSuccessful) {
                 occurrences.clear()
 
@@ -81,6 +81,8 @@ class HouseHistoryFragment(private val house: House) : Fragment(), View.OnClickL
                     taskIds.add(occurrence.taskId)
                     participantIds.add(occurrence.participant)
                 }
+                if (occurrences.isEmpty())
+                    return@addOnCompleteListener
                 occurrences.sortWith(Utils.sortOccurrenceByDate)
 
                 // Get Associated Tasks
