@@ -44,7 +44,11 @@ class HouseHistoryOccurrenceAdapter(
         viewHolder.binding.tDate.text = Utils.dateFormatDdMMHH.format(occurrence.creationDate)
         viewHolder.binding.tNameUser.text = occurrence.localParticipant?.surname
         viewHolder.binding.tPoints.text = occurrence.value.toString()
-        viewHolder.binding.tTaskName.text = occurrence.localTask?.name
+        if (occurrence.noTaskName !== null && occurrence.noTaskName.isNotBlank()) {
+            viewHolder.binding.tTaskName.text = occurrence.noTaskName
+        } else {
+            viewHolder.binding.tTaskName.text = occurrence.localTask?.name
+        }
         viewHolder.binding.tTxtPoints.text = if (occurrence.value > 1) " points" else " point"
 
     }

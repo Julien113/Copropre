@@ -9,4 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rvHistory"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bNewOccurrence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/house_tasks_add_task_fab"
+        android:src="@drawable/outline_add_24" />
 </RelativeLayout>

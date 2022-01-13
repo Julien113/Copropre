@@ -58,6 +58,47 @@ public class TaskService extends AbstractService {
                 .get();
     }
 
+    public static void createOccurrenceNoTask(Integer value, String taskName, String houseID, String uid, String participantId, OnCompleteListener<Void> onCompleteListener, OnFailureListener onFailureListener) {
+        Occurrence occurrence = new Occurrence(value, uid, houseID, participantId, taskName);
+        occurrence.setCreationDate(new Date());
+
+        db.collection(OCCURRENCE_COLLECTION)
+                .add(occurrence)
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        if (task.isSuccessful()) {
+
+                            db.runTransaction(new Transaction.Function<Void>() {
+                                @Override
+                                public Void apply(@NonNull Transaction transaction) throws FirebaseFirestoreException {
+                                    occurrence.setOccurenceId(task.getResult().getId());
+
+                                    // prepare
+                                    DocumentSnapshot participantSnap = transaction.get(db.collection(HouseService.PARTICIPANT_COLLECTION).document(participantId));
+                                    long participantTotalValue = participantSnap.getLong("totalValue") + occurrence.getValue();
+
+                                    transaction.update(db.collection(OCCURRENCE_COLLECTION).document(occurrence.getOccurenceId()), "occurenceId", task.getResult().getId());
+
+
+                                    // modifie la value du participant
+                                    try {
+                                        transaction.update(db.collection(HouseService.PARTICIPANT_COLLECTION).document(participantId),"totalValue",participantTotalValue);
+                                    } catch (NullPointerException e) {
+                                        throw new FirebaseFirestoreException("Could not retrieve value of Participant", FirebaseFirestoreException.Code.ABORTED);
+                                    }
+
+                                    return null;
+                                }
+                            }).addOnCompleteListener(onCompleteListener).addOnFailureListener(onFailureListener);
+
+                        } else {
+                            onFailureListener.onFailure(task.getException());
+                        }
+                    }
+                });
+    }
+
     public static void completeTask(CPTask cpTask, String uid, String participantId, OnCompleteListener<Void> onCompleteListener, OnFailureListener onFailureListener) {
         Occurrence occurrence = new Occurrence(cpTask.getTaskId(),cpTask.getValue(), uid, cpTask.getHouseId(),participantId);
         occurrence.setCreationDate(new Date());

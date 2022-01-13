@@ -18,6 +18,7 @@ import com.copropre.common.services.main.HouseService
 import com.copropre.common.services.main.TaskService
 import com.copropre.common.utils.Utils
 import com.copropre.databinding.FragmentHouseHistoryBinding
+import com.copropre.main.house.tasks.NewTaskFragment
 
 class HouseHistoryFragment(private val house: House) : Fragment(), View.OnClickListener {
     private var _binding: FragmentHouseHistoryBinding? = null
@@ -38,6 +39,7 @@ class HouseHistoryFragment(private val house: House) : Fragment(), View.OnClickL
         super.onCreate(savedInstanceState)
         TopBarService.changeTopBar(TopBarService.FragmentName.FRAGMENT_HOUSE_HISTORY)
 
+        binding.bNewOccurrence.setOnClickListener(this)
 
         adapterHouseHistoryOccurrence =
             HouseHistoryOccurrenceAdapter(occurrences, this)
@@ -62,23 +64,32 @@ class HouseHistoryFragment(private val house: House) : Fragment(), View.OnClickL
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.bCreate -> {
+            R.id.bNewOccurrence -> {
+                requireParentFragment().parentFragmentManager
+                    .beginTransaction()
+                    .add(R.id.container, HouseHistoryNewOccurrenceFragment(house,this))
+                    .addToBackStack("newTask")
+                    .commit()
             }
         }
     }
 
-    private fun getHouseOccurrences() {
+    fun getHouseOccurrences() {
+        // recupere les occurrences de la maison
         TaskService.getOccurrencesOfHouse(house.houseId).addOnCompleteListener{
             if (it.isSuccessful) {
                 occurrences.clear()
 
-                var associated = 0;
+                // recupere les tasks liés aux occurrences
+                var associated = 0
                 val taskIds = arrayListOf<String>()
                 val participantIds = arrayListOf<String>()
                 for (snapshot in it.result!!) {
                     val occurrence = snapshot.toObject(Occurrence::class.java)
                     occurrences.add(occurrence)
-                    taskIds.add(occurrence.taskId)
+                    if (occurrence.taskId !== null && occurrence.taskId.isNotBlank()) {
+                        taskIds.add(occurrence.taskId)
+                    }
                     participantIds.add(occurrence.participant)
                 }
                 if (occurrences.isEmpty())
@@ -86,38 +97,46 @@ class HouseHistoryFragment(private val house: House) : Fragment(), View.OnClickL
                 occurrences.sortWith(Utils.sortOccurrenceByDate)
 
                 // Get Associated Tasks
-                TaskService.getMultipleTasks(taskIds).addOnCompleteListener { taskSnapshot ->
-                    if (taskSnapshot.isSuccessful) {
-                        val tasksMap = hashMapOf<String,CPTask>()
-                        for (task in taskSnapshot.result!!.toObjects(CPTask::class.java)) {
-                            tasksMap[task.taskId] = task
-                        }
-                        linkTaskWithOccurrence(tasksMap)
+                if (taskIds.isNotEmpty()) {
+                    TaskService.getMultipleTasks(taskIds).addOnCompleteListener { taskSnapshot ->
+                        if (taskSnapshot.isSuccessful) {
+                            val tasksMap = hashMapOf<String,CPTask>()
+                            for (task in taskSnapshot.result!!.toObjects(CPTask::class.java)) {
+                                tasksMap[task.taskId] = task
+                            }
+                            // lie avec leurs occurrences
+                            linkTaskWithOccurrence(tasksMap)
 
-                        associated++
-                        if (associated == 2)
-                            adapterHouseHistoryOccurrence.notifyDataSetChanged()
-                    } else {
-                        Log.e("OccurrenceList", "Cant tasks associated with occurrence list")
-                        taskSnapshot.exception!!.printStackTrace()
+                            associated++
+                            // Si les 2 appels sont effectués ou si l'autre liste est vide
+                            if (associated == 2 || participantIds.isEmpty())
+                                adapterHouseHistoryOccurrence.notifyDataSetChanged()
+                        } else {
+                            Log.e("OccurrenceList", "Cant tasks associated with occurrence list")
+                            taskSnapshot.exception!!.printStackTrace()
+                        }
                     }
                 }
 
-                // Get Associated Participants
-                HouseService.getMultipleParticipants(participantIds).addOnCompleteListener { taskSnapshot ->
-                    if (taskSnapshot.isSuccessful) {
-                        val participantMap = hashMapOf<String,Participant>()
-                        for (participant in taskSnapshot.result!!.toObjects(Participant::class.java)) {
-                            participantMap[participant.participantId] = participant
-                        }
-                        linkParticipantWithOccurrence(participantMap)
 
-                        associated++
-                        if (associated == 2)
-                            adapterHouseHistoryOccurrence.notifyDataSetChanged()
-                    } else {
-                        Log.e("OccurrenceList", "Cant participant associated with occurrence list")
-                        taskSnapshot.exception!!.printStackTrace()
+                // Get Associated Participants
+                if (participantIds.isNotEmpty()) {
+                    HouseService.getMultipleParticipants(participantIds).addOnCompleteListener { taskSnapshot ->
+                        if (taskSnapshot.isSuccessful) {
+                            val participantMap = hashMapOf<String,Participant>()
+                            for (participant in taskSnapshot.result!!.toObjects(Participant::class.java)) {
+                                participantMap[participant.participantId] = participant
+                            }
+                            linkParticipantWithOccurrence(participantMap)
+
+                            associated++
+                            // Si les 2 appels sont effectués ou si l'autre liste est vide
+                            if (associated == 2 || taskIds.isEmpty())
+                                adapterHouseHistoryOccurrence.notifyDataSetChanged()
+                        } else {
+                            Log.e("OccurrenceList", "Cant participant associated with occurrence list")
+                            taskSnapshot.exception!!.printStackTrace()
+                        }
                     }
                 }
             } else {

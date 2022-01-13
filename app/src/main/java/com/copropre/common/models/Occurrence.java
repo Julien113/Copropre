@@ -11,6 +11,7 @@ public class Occurrence extends DBClass {
     String userCreation;
     String userUpdate;
     String participant;
+    String noTaskName;
 
     @Exclude
     CPTask localTask;
@@ -22,6 +23,15 @@ public class Occurrence extends DBClass {
 
     public Occurrence(String taskId, int value, String userCreation, String houseId, String participant) {
         this.taskId = taskId;
+        this.value = value;
+        this.houseId = houseId;
+        this.userCreation = userCreation;
+        this.participant = participant;
+    }
+
+
+    public Occurrence(int value, String userCreation, String houseId, String participant, String noTaskName) {
+        this.noTaskName = noTaskName;
         this.value = value;
         this.houseId = houseId;
         this.userCreation = userCreation;
@@ -100,5 +110,11 @@ public class Occurrence extends DBClass {
         this.houseId = houseId;
     }
 
+    public String getNoTaskName() {
+        return noTaskName;
+    }
 
+    public void setNoTaskName(String noTaskName) {
+        this.noTaskName = noTaskName;
+    }
 }

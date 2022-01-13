@@ -16,7 +16,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 public class TopBarService {
     public static MaterialToolbar topBar;
-    public enum FragmentName {FRAGMENT_LOGIN,FRAGMENT_NEW_TASK ,FRAGMENT_NEW_HOUSE,FRAGMENT_PROFILE ,FRAGMENT_SIGNIN, FRAGMENT_HOUSE_HISTORY, FRAGMENT_HOUSE, FRAGMENT_HOUSE_BALANCE, FRAGMENT_HOUSE_JOIN, FRAGMENT_HOUSE_LIST, FRAGMENT_HOUSE_TASK}
+    public enum FragmentName {FRAGMENT_LOGIN,FRAGMENT_NEW_TASK ,FRAGMENT_NEW_OCCURENCE ,FRAGMENT_NEW_HOUSE,FRAGMENT_PROFILE ,FRAGMENT_SIGNIN, FRAGMENT_HOUSE_HISTORY, FRAGMENT_HOUSE, FRAGMENT_HOUSE_BALANCE, FRAGMENT_HOUSE_JOIN, FRAGMENT_HOUSE_LIST, FRAGMENT_HOUSE_TASK}
 
     public static void setFragmentLogin(FragmentManager supportFragmentManager){
         LogInFragment fragmentLogin = new LogInFragment();
@@ -99,6 +99,7 @@ public class TopBarService {
             case FRAGMENT_HOUSE_JOIN:
             case FRAGMENT_HOUSE_LIST:
             case FRAGMENT_NEW_HOUSE:
+            case FRAGMENT_NEW_OCCURENCE:
             case FRAGMENT_PROFILE:
                 menu.findItem(R.id.mbPremium).setVisible(true);
                 menu.findItem(R.id.mbLogout).setVisible(true);
