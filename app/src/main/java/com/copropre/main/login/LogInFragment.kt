@@ -14,6 +14,7 @@ import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.UserService
 import com.copropre.common.utils.Utils
 import com.copropre.databinding.FragmentLoginBinding
+import com.copropre.main.house.list.HouseListFragment
 
 class LogInFragment: Fragment(), View.OnClickListener {
     private var _binding: FragmentLoginBinding? = null
@@ -52,7 +53,7 @@ class LogInFragment: Fragment(), View.OnClickListener {
             }
             R.id.bSignIn -> {
                 // Go to sign in
-                val fragmentSignIn = SignInFragment()
+                val fragmentSignIn = SignInFragment(this)
                 parentFragmentManager.beginTransaction()
                     .addToBackStack("SignIn")
                     .add(R.id.container, fragmentSignIn)
@@ -95,7 +96,6 @@ class LogInFragment: Fragment(), View.OnClickListener {
                     Log.d("LoginUser", "signInWithEmail:success")
                     //val user = auth.currentUser
                     //updateUI(user)
-                    goBackFragmentMain()
                     UserService.getUser(AuthService.getAuth().uid).addOnCompleteListener {
                         if (it.isSuccessful) {
                             AuthService.setCurrentUser(it.result!!.toObject(User::class.java))
@@ -132,8 +132,12 @@ class LogInFragment: Fragment(), View.OnClickListener {
 
 
     fun goBackFragmentMain() {
+        // ferme le keyboard
+        view?.clearFocus()
+        val fragment = HouseListFragment();
         parentFragmentManager.beginTransaction()
             .detach(this)
+            .replace(R.id.container, fragment)
             .commitAllowingStateLoss()
     }
 }

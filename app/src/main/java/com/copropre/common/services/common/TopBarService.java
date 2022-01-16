@@ -5,7 +5,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.copropre.R;
 import com.copropre.common.services.main.AuthService;
@@ -20,8 +22,11 @@ public class TopBarService {
 
     public static void setFragmentLogin(FragmentManager supportFragmentManager){
         LogInFragment fragmentLogin = new LogInFragment();
-        supportFragmentManager.beginTransaction()
-                .add(R.id.container, fragmentLogin)
+        FragmentTransaction transaction = supportFragmentManager.beginTransaction();
+        for (Fragment fragment: supportFragmentManager.getFragments()) {
+            transaction.remove(fragment);
+        }
+        transaction.add(R.id.container, fragmentLogin)
                 .addToBackStack("login")
                 .commitAllowingStateLoss();
     }

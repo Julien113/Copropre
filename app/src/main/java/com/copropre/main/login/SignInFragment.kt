@@ -14,8 +14,9 @@ import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.UserService
 import com.copropre.common.utils.Utils
 import com.copropre.databinding.FragmentSigninBinding
+import com.copropre.main.house.list.HouseListFragment
 
-class SignInFragment : Fragment(), View.OnClickListener {
+class SignInFragment(private val loginFragment: LogInFragment) : Fragment(), View.OnClickListener {
     private var _binding: FragmentSigninBinding? = null
     private val binding get() = _binding!!
 
@@ -118,8 +119,14 @@ class SignInFragment : Fragment(), View.OnClickListener {
     }
 
     fun goBackFragmentMain() {
+        // ferme le keyboard
+        view?.clearFocus()
+        // retourne au fragment main
+        val fragment = HouseListFragment();
         parentFragmentManager.beginTransaction()
             .detach(this)
+            .detach(loginFragment)
+            .replace(R.id.container, fragment)
             .commitAllowingStateLoss()
     }
 

@@ -11,8 +11,6 @@ import com.copropre.common.services.main.UserService
 import com.copropre.databinding.ActivityMainBinding
 import com.copropre.main.house.list.HouseListFragment
 import com.copropre.main.login.LogInFragment
-import com.copropre.main.login.SignInFragment
-import com.copropre.main.parameters.ProfileFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,12 +35,15 @@ class MainActivity : AppCompatActivity() {
             UserService.getUser(firebaseCurrentUser.uid).addOnCompleteListener {
                 if (it.isSuccessful) {
                     AuthService.setCurrentUser(it.result!!.toObject(User::class.java))
+                    setFragmentMain()
                 } else {
                     it.exception!!.printStackTrace()
                 }
             }
+        } else {
+            setFragmentLogin()
+
         }
-        setFragmentMain()
     }
 
     fun setFragmentMain() {
@@ -51,11 +52,13 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.container, fragment)
             .commitAllowingStateLoss()
 
-        /*
-        val fragment = MainFragment();
+    }
+
+    fun setFragmentLogin() {
+        val fragment = LogInFragment();
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, fragment)
-            .commitAllowingStateLoss()*/
+            .commitAllowingStateLoss()
     }
 
     fun initTopBar() {
