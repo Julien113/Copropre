@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="40dp">
+    android:layout_height="50dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,6 +13,7 @@
             android:ellipsize="end"
             android:id="@+id/tTaskName"
             android:text="Passer le baladdddddddds"
+            style="@style/MiniContentBold"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -21,6 +22,7 @@
             android:ellipsize="middle"
             android:id="@+id/tHasBeenDone"
             android:text=" fait par "
+            style="@style/MiniContent"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -29,6 +31,7 @@
             android:ellipsize="end"
             android:id="@+id/tNameUser"
             android:text="Julien coulidjango"
+            style="@style/MiniContentBold"
             />
     </LinearLayout>
 
@@ -38,6 +41,8 @@
         android:id="@+id/tPoints"
         android:layout_below="@id/llTop"
         android:text="3"
+        android:textSize="14sp"
+        style="@style/MiniContentBig"
         />
 
     <TextView
@@ -47,6 +52,7 @@
         android:layout_toEndOf="@id/tPoints"
         android:layout_below="@id/llTop"
         android:text=" Points"
+        style="@style/MiniContentBold"
         />
 
 
@@ -57,6 +63,7 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@id/llTop"
         android:text="12/12/24"
+        style="@style/MiniContent"
         />
 
 

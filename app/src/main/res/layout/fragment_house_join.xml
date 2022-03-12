@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Rejoindre un foyer"
-        android:textSize="24sp"
+        style="@style/PageTitle"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,12 +19,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Entrez le code du foyer pour le rejoindre. Un membre du foyer peut vous partager ce code depuis l'application."
+            style="@style/MiniContentBold"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etCode"
             android:hint="Code du foyer"
+            style="@style/MiniContent"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -37,6 +39,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/bJoin"
             android:text="Rejoindre"
+            style="@style/Button"
             />
     </LinearLayout>
 
@@ -51,18 +54,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Choisissez le surnom que vous voulez porter au sein du foyer."
+            style="@style/MiniContentBold"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etSurname"
             android:hint="Surnom (Optionel)"
+            style="@style/MiniContent"
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/bJoin2"
             android:text="Rejoindre"
+            style="@style/MiniContentBold"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,6 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Vous pouvez egalement vous associer à un profil déjà existant."
+                style="@style/MiniContentBold"
                 />
 
             <androidx.recyclerview.widget.RecyclerView

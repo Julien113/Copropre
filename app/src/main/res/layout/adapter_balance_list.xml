@@ -6,6 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tName"
+        style="@style/MiniTitle"
+        android:text="Tache test"
         />
 
     <TextView
@@ -13,6 +15,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/tMin"
         android:layout_below="@id/tName"
+        android:text="3"
+        style="@style/MiniContent"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -20,6 +24,8 @@
         android:id="@+id/tMax"
         android:layout_below="@id/tName"
         android:layout_alignParentEnd="true"
+        android:text="10"
+        style="@style/MiniContent"
         />
     <com.copropre.common.customviews.BalanceView
         android:layout_width="match_parent"

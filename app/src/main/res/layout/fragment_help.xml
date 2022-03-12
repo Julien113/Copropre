@@ -16,12 +16,13 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:text="Help"
-            android:textSize="22sp" />
+            style="@style/PageTitle"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="L'application Copropre est une application de partage de taches menagère"
+            style="@style/MiniContent"
             android:textSize="18sp" />
     </LinearLayout>
 

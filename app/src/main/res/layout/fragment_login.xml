@@ -20,15 +20,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
-            android:textSize="34sp"
-            android:text="@string/app_name" />
+            android:text="@string/app_name"
+            style="@style/AppTitle" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
             android:id="@+id/etEmail"
             android:inputType="textEmailAddress"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            style="@style/EditTextNormal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +42,8 @@
             android:hint="Mot de passe"
             android:id="@+id/etPassword"
             android:inputType="textPassword"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            style="@style/EditTextNormal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,6 +55,7 @@
             android:layout_height="wrap_content"
             android:text="Se connecter"
             android:id="@+id/bLogIn"
+            style="@style/Button"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,6 +69,7 @@
                 android:layout_marginEnd="2dp"
                 android:enabled="false"
                 android:id="@+id/bGoogle"
+                style="@style/Button"
                 />
             <Button
                 android:layout_width="wrap_content"
@@ -75,19 +79,22 @@
                 android:layout_marginStart="2dp"
                 android:enabled="false"
                 android:id="@+id/bFacebook"
+                style="@style/Button"
                 />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Pas encore inscrit? Inscrivez vous en cliquant ici:"/>
+            android:text="Pas encore inscrit? Inscrivez vous en cliquant ici:"
+            style="@style/MiniContent"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="S'inscrire"
             android:id="@+id/bSignIn"
+            style="@style/Button"
             />
 
     </LinearLayout>

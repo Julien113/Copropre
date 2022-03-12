@@ -1,8 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="AppTitle">
+        <item name="android:textSize">34sp</item>
+        <item name="android:fontFamily">@font/poppins_black</item>
+    </style>
+
+    <style name="BackGround">
+        <item name="background"></item>
+    </style>
+
     <style name="EditTextErrorMsg">
         <item name="android:textColor">@color/red_error</item>
         <item name="android:visibility">gone</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="PageTitle">
+        <item name="fontFamily">@font/poppins_extra_bold</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="EditTextNormal">
+        <item name="fontFamily">@font/poppins_extra_bold</item>
+    </style>
+    
+    <style name="MiniTitle">
+        <item name="fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="MiniContentBold">
+        <item name="fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="MiniContentBig">
+        <item name="fontFamily">@font/poppins_extra_bold</item>
+    </style>
+
+    <style name="MiniContent">
+        <item name="fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="MiniContentThin">
+        <item name="fontFamily">@font/poppins_thin</item>
+    </style>
+
+    <style name="Button">
+        <item name="fontFamily">@font/poppins_semi_bold</item>
     </style>
 </resources>

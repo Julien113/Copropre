@@ -9,7 +9,7 @@
     android:layout_height="wrap_content"
     android:text="Inscription"
     android:layout_gravity="center"
-    android:textSize="24sp"/>
+    style="@style/PageTitle" />
 
     <EditText
         android:id="@+id/etName"
@@ -17,8 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Nom (Optionnel)"
-        android:textColorHint="#757575"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        style="@style/EditTextNormal"  />
 
     <EditText
         android:id="@+id/etEmail"
@@ -26,7 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Email"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        style="@style/EditTextNormal"  />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,9 +41,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Mot de passe"
-        android:textColorHint="#757575"
         android:inputType="textVisiblePassword"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        style="@style/EditTextNormal"  />
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,11 +55,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Copropre respecte votre vie privée. "
+        style="@style/MiniContent"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Voir notre politique de vie privée."
+        style="@style/MiniContent"
         />
 
     <Button
@@ -66,6 +69,6 @@
         android:layout_height="wrap_content"
         android:text="S'inscire"
         android:id="@+id/bSignIn"
-
+        style="@style/Button"
         />
 </LinearLayout>

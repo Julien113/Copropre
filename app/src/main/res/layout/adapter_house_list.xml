@@ -7,6 +7,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/tHouseTitle"
-    android:text="yooo"
+    android:text="Maison de base"
+    android:layout_centerInParent="true"
+    android:textSize="16sp"
+    style="@style/MiniContentBold"
     />
 </RelativeLayout>

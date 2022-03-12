@@ -11,18 +11,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Nouvelle Tache"
-        android:textSize="24sp" />
+        style="@style/PageTitle"  />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vous pouvez créer une tache qu'un des membres du foyer s'attribuera pour gagner un nombre de points." />
+        android:text="Vous pouvez créer une tache qu'un des membres du foyer s'attribuera pour gagner un nombre de points."
+        style="@style/MiniContentBold"  />
 
     <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Intitulé (passer le balais, sortir les poubelles,...)" />
+        android:hint="Intitulé (passer le balais, sortir les poubelles,...)"
+        style="@style/EditTextNormal"  />
 
     <TextView
         android:id="@+id/tErrorTaskName"
@@ -34,7 +36,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Attribuez un score de pénibilité à la tache. Le plus élevé étant une tache très pénible. Par exemple: sortir les poubelles: 2pts, passer l'aspirateur: 5pts" />
+        android:text="Attribuez un score de pénibilité à la tache. Le plus élevé étant une tache très pénible. Par exemple: sortir les poubelles: 2pts, passer l'aspirateur: 5pts"
+        style="@style/MiniContent"  />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,17 +46,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Score: " />
+            android:text="Score: "
+            style="@style/MiniContentBold"  />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3"
             android:id="@+id/tScore"
-            android:textSize="24sp"/>
+            android:textSize="24sp"
+            style="@style/MiniContentBig" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="points."/>
+            android:text="points."
+            style="@style/MiniContentBold" />
     </LinearLayout>
 
     <com.google.android.material.slider.Slider
@@ -73,7 +79,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Définir une deadline pour la tâche." />
+            android:text="Définir une deadline pour la tâche."
+            style="@style/MiniContentBold"  />
 
         <Switch
             android:id="@+id/sDate"
@@ -93,12 +100,14 @@
         android:focusable="false"
         android:hint="Date"
         android:inputType="none"
-        tools:ignore="TextFields" />
+        tools:ignore="TextFields"
+        style="@style/EditTextNormal"  />
 
     <Button
         android:id="@+id/bCreateTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Creer" />
+        android:text="Creer"
+        style="@style/Button"  />
 
 </LinearLayout>

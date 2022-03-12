@@ -11,18 +11,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Nouvelle Occurrence"
-        android:textSize="24sp" />
+        style="@style/PageTitle" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vous pouvez ajouter une occurrence non liée à une tache." />
+        android:text="Vous pouvez ajouter une occurrence non liée à une tache."
+        style="@style/MiniContentBold"  />
 
     <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Intitulé (passer le balais, sortir les poubelles,...)" />
+        android:hint="Intitulé (passer le balais, sortir les poubelles,...)"
+        style="@style/EditTextNormal"  />
 
     <TextView
         android:id="@+id/tErrorTaskName"
@@ -34,7 +36,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Attribuez un score de pénibilité à la tache. Le plus élevé étant une tache très pénible. Par exemple: sortir les poubelles: 2pts, passer l'aspirateur: 5pts" />
+        android:text="Attribuez un score de pénibilité à la tache. Le plus élevé étant une tache très pénible. Par exemple: sortir les poubelles: 2pts, passer l'aspirateur: 5pts"
+        style="@style/MiniContent"  />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,17 +46,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Score: " />
+            android:text="Score: "
+            style="@style/MiniContentBold"  />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3"
             android:id="@+id/tScore"
-            android:textSize="24sp"/>
+            style="@style/MiniContentBig"
+            android:textSize="22sp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="points."/>
+            android:text="points."
+            style="@style/MiniContentBold" />
     </LinearLayout>
 
     <com.google.android.material.slider.Slider
@@ -75,12 +81,14 @@
         android:focusable="false"
         android:hint="Date"
         android:inputType="none"
-        tools:ignore="TextFields" />
+        tools:ignore="TextFields"
+        style="@style/EditTextNormal"  />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quel membre a effectué la tâche? " />
+        android:text="Quel membre a effectué la tâche? "
+        style="@style/MiniContentBold"  />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -96,6 +104,7 @@
         android:id="@+id/bCreateOccurrence"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Creer" />
+        android:text="Creer"
+        style="@style/Button" />
 
 </LinearLayout>
