@@ -1,15 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="110dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/tHouseTitle"
-    android:text="Maison de base"
-    android:layout_centerInParent="true"
-    android:textSize="16sp"
-    style="@style/MiniContentBold"
-    />
+
+
+    <ImageView
+        android:id="@+id/ivHouseIcon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_house_1" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/ivHouseIcon"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:layout_marginEnd="24dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tHouseTitle"
+            android:text="Maison de base"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/tHouseDesc"
+            android:maxLines="1"
+            android:textSize="16sp"
+            style="@style/MiniContentBig"
+            />
+
+        <TextView
+            android:id="@+id/tHouseDesc"
+            style="@style/MiniContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="Description tah les oufs  merci 2 lignes"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tHousePoints"
+            android:text="+25"
+            android:layout_centerHorizontal="true"
+            android:textSize="14sp"
+            style="@style/MiniContentBold"
+            android:textColor="@color/green"
+            android:layout_below="@id/tHouseDesc"
+            />
+    </RelativeLayout>
+
+
 </RelativeLayout>

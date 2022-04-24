@@ -61,5 +61,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-database-ktx'
 
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+
 
 }

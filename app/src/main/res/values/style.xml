@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:ns1="http://schemas.android.com/apk/res-auto">
 
+    <!-- global -->
     <style name="AppTitle">
         <item name="android:textSize">34sp</item>
-        <item name="android:fontFamily">@font/poppins_black</item>
+        <item name="android:fontFamily">@font/poppins_extra_bold</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="AppSubTitle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/poppins_extra_bold</item>
+        <item name="android:textColor">@color/text_secondary</item>
     </style>
 
     <style name="BackGround">
-        <item name="background"></item>
+        <item name="background">@color/app_background</item>
+    </style>
+
+    <style name="MyMaterialToolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:elevation" ns1:ignore="NewApi">@dimen/design_appbar_elevation</item>
+        <item name="android:background">@color/app_background</item>
+        <item name="titleTextColor">@color/text_primary</item>
+        <item name="subtitleTextColor">@color/text_secondary</item>
+        <!-- Note: this theme overlay will only work if the style is applied directly to a Toolbar. -->
+        <item name="android:theme">@style/ThemeOverlay.MaterialComponents.Toolbar.Primary</item>
+        <item name="titleTextStyle">@style/MiniTitle</item>
+    </style>
+
+    <style name="ToolbarTheme">
+        <item name="fontFamily">@font/poppins_regular</item>
+    </style>
+    <style name="ToolbarTitle">
+        <item name="fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="EditTextErrorMsg">
@@ -27,22 +53,27 @@
     
     <style name="MiniTitle">
         <item name="fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:textColor">@color/text_primary</item>
     </style>
 
     <style name="MiniContentBold">
         <item name="fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:textColor">@color/text_primary</item>
     </style>
 
     <style name="MiniContentBig">
         <item name="fontFamily">@font/poppins_extra_bold</item>
+        <item name="android:textColor">@color/text_primary</item>
     </style>
 
     <style name="MiniContent">
         <item name="fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/text_primary</item>
     </style>
 
     <style name="MiniContentThin">
         <item name="fontFamily">@font/poppins_thin</item>
+        <item name="android:textColor">@color/text_primary</item>
     </style>
 
     <style name="Button">

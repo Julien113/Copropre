@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Copropre</string>
+    <string name="app_desc">Nettoie ta barraque avec tes collocs</string>
 
     <string name="favorite">Favoris</string>
     <string name="content_description_favorite">Favoris</string>

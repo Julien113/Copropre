@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import com.copropre.common.models.User
 import com.copropre.common.services.common.TopBarService
@@ -29,6 +30,9 @@ class MainActivity : AppCompatActivity() {
 
         checkUpdate()
         initTopBar()
+
+        // Hide loading screen
+        binding.loadingScreen.loadingScreen.visibility = View.GONE
 
     }
 
@@ -112,8 +116,8 @@ class MainActivity : AppCompatActivity() {
     fun initTopBar() {
         TopBarService.topBar = binding.topAppBar
         TopBarService.initTopBar(supportFragmentManager)
+        binding.appBarLayout.visibility = View.VISIBLE
         return
-
     }
 
 

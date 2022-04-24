@@ -69,6 +69,7 @@ public class HouseService extends AbstractService {
         });
     }
 
+    // Recupère les maisons
     public static void getMyHouses(String userId, OnCompleteListener<QuerySnapshot> listener) {
         db.collection(PARTICIPANT_COLLECTION)
                 .whereEqualTo("userId", userId)
@@ -89,6 +90,27 @@ public class HouseService extends AbstractService {
                 });
     }
 
+    // Recupère les maisons avec les participants
+    public static void getMyHousesWithMyParticipants(String userId, OnCompleteListener<QuerySnapshot> listener, final List<Participant> participations) {
+        db.collection(PARTICIPANT_COLLECTION)
+                .whereEqualTo("userId", userId)
+                //.whereEqualTo("active", true)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        participations.clear();
+                        participations.addAll(queryDocumentSnapshots.toObjects(Participant.class));
+                        if (!participations.isEmpty()) {
+                            List<String> houseIds = participations
+                                    .stream()
+                                    .map(Participant::getHouseId)
+                                    .collect(Collectors.toList());
+                            db.collection(HOUSE_COLLECTION).whereIn("houseId", houseIds).get().addOnCompleteListener(listener);
+                        }
+                    }
+                });
+    }
 
     public static Task<DocumentSnapshot> getHouse(String houseId) {
         return  db.collection(HOUSE_COLLECTION).document(houseId).get();

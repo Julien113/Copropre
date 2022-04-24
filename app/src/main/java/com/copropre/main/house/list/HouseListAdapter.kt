@@ -1,6 +1,5 @@
 package com.copropre.main.house.list
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +35,11 @@ class HouseListAdapter (private val dataSet: MutableList<House>, private val fra
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.binding.tHouseTitle.setText(dataSet[position].name)
+        viewHolder.binding.tHouseTitle.text = dataSet[position].name
+        viewHolder.binding.tHouseDesc.text = dataSet[position].description
+        if (dataSet[position].localMyParticipant !== null)
+            viewHolder.binding.tHousePoints.text = "+" + dataSet[position].localMyParticipant.totalValue
+
         viewHolder.binding.layout.setOnClickListener {
             fragment.parentFragmentManager
                 .beginTransaction()
