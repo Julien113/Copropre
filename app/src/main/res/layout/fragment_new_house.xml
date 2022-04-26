@@ -1,63 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    style="@style/PaddedBackGround"
+    >
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/etName"
-        android:hint="Name"
-        android:inputType="text"
-        style="@style/EditTextNormal" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tErrorName"
-        style="@style/EditTextErrorMsg"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etName"
+            android:hint="Nom du foyer"
+            android:inputType="text"
+            android:outlineAmbientShadowColor="@color/green"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tErrorName"
+            style="@style/EditTextErrorMsg"
+            />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/etDescription"
-        android:hint="Description"
-        android:inputType="text"
-        style="@style/EditTextNormal"  />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tErrorDescription"
-        style="@style/EditTextErrorMsg"
-        />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etDescription"
+            android:hint="Description"
+            android:inputType="text"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tErrorDescription"
+            style="@style/EditTextErrorMsg"
+            />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vous pouvez choisir le nom avec lequel vous apparaîtrez pour les autres members du foyer."
-        style="@style/MiniContentBold"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Participants:"
+            style="@style/MiniSubTitle"
+            />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/etSurname"
-        android:hint="Votre surnom (Optionel)"
-        android:inputType="text"
-        style="@style/EditTextNormal"  />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etSurname"
+            android:hint="Votre surnom (Optionel)"
+            android:inputType="text"/>
+    </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Blablabla du texte à rajouter blaaaaaaa blalba. Lorem Ipsummmm."
-        style="@style/MiniContent"
-        />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bCreate"
         android:text="Create"
-        style="@style/Button"
+        android:layout_alignParentBottom="true"
+        style="@style/ButtonNormal"
         />
-</LinearLayout>
+</RelativeLayout>

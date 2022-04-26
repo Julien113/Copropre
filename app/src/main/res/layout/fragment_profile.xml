@@ -79,7 +79,8 @@
             android:id="@+id/bLogOut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Déconnexion" />
+            android:text="Déconnexion"
+            style="@style/ButtonNormal" />
 
     </LinearLayout>
 </RelativeLayout>

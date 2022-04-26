@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/bJoin"
             android:text="Rejoindre"
-            style="@style/Button"
+            style="@style/ButtonNormal"
             />
     </LinearLayout>
 
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/bJoin2"
             android:text="Rejoindre"
-            style="@style/MiniContentBold"
+            style="@style/ButtonNormal"
             />
         <LinearLayout
             android:layout_width="match_parent"

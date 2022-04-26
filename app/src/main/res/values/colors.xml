@@ -13,11 +13,11 @@
     <color name="app_loading_circle_2">#12FFBC7A</color>
     <color name="app_loading_circle_3">#19FFBC7A</color>
 
-    <color name="primary">#FEE590</color>
-    <color name="primary_lesser">#FFF1C1</color>
+    <color name="secondary">#FEE590</color>
+    <color name="secondary_lesser">#FFF1C1</color>
 
-    <color name="text_primary">#413752</color>
-    <color name="text_secondary">#BBAEB4</color>
+    <color name="primary">#413752</color>
+    <color name="primary_lesser">#BBAEB4</color>
 
     <color name="green">#7DE879</color>
 

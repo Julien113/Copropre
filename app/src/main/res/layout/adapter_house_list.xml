@@ -45,7 +45,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="Description tah les oufs  merci 2 lignes"
-            android:textColor="@color/text_secondary"
+            android:textColor="@color/primary_lesser"
             android:gravity="center"
             android:textSize="14sp"
             android:textStyle="bold" />

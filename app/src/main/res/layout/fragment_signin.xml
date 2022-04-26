@@ -69,6 +69,6 @@
         android:layout_height="wrap_content"
         android:text="S'inscire"
         android:id="@+id/bSignIn"
-        style="@style/Button"
+        style="@style/ButtonNormal"
         />
 </LinearLayout>

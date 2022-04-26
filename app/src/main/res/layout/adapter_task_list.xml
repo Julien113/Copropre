@@ -27,8 +27,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/bDoTask"
         android:text="Fait"
-        style="@style/Button"
         android:layout_alignParentEnd="true"
+        style="@style/ButtonNormal"
         />
 
 </RelativeLayout>

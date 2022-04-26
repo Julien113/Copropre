@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import com.copropre.common.models.User
+import com.copropre.common.services.DataHolder
 import com.copropre.common.services.common.TopBarService
 import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.UserService
@@ -28,17 +29,17 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        // Check for update
         checkUpdate()
+
         initTopBar()
 
-        // Hide loading screen
-        binding.loadingScreen.loadingScreen.visibility = View.GONE
+
 
     }
 
     public override fun onStart() {
         super.onStart()
-        // Check for update
 
         // Check if user is signed in (non-null) and update UI accordingly.
         val firebaseCurrentUser = AuthService.getAuth().currentUser
@@ -103,6 +104,8 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, fragment)
             .commitAllowingStateLoss()
+        // Hide loading screen
+        binding.loadingScreen.loadingScreen.visibility = View.GONE
 
     }
 
@@ -111,6 +114,8 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, fragment)
             .commitAllowingStateLoss()
+        // Hide loading screen
+        binding.loadingScreen.loadingScreen.visibility = View.GONE
     }
 
     fun initTopBar() {

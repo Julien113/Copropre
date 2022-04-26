@@ -15,6 +15,7 @@ import com.copropre.common.services.main.HouseService
 import com.copropre.databinding.FragmentHouseListBinding
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.copropre.common.models.Participant
+import com.copropre.common.services.DataHolder
 import com.copropre.common.services.common.TopBarService
 import com.copropre.main.house.join.HouseJoinFragment
 import com.copropre.main.house.NewHouseFragment
@@ -26,7 +27,7 @@ class HouseListFragment : Fragment(), View.OnClickListener {
 
     private var fabExtended = false
 
-    private var houseList = mutableListOf<House>()
+    //private var houseList = mutableListOf<House>()
 
     private var shortAnimationDuration: Int = 200
 
@@ -47,7 +48,10 @@ class HouseListFragment : Fragment(), View.OnClickListener {
         binding.bAddJoinHouse.setOnClickListener(this)
         binding.bCreateHouse.setOnClickListener(this)
         binding.bJoinHouse.setOnClickListener(this)
-        houseListAdapter = HouseListAdapter(houseList, this)
+
+        Log.e("yo", "5")
+        houseListAdapter = HouseListAdapter(DataHolder.getMyHouseList(), this)
+        DataHolder.getMyParticipationsLinkedAdapters().add(houseListAdapter)
         binding.rvHouses.adapter = houseListAdapter
         var linearLayoutManager = LinearLayoutManager(context)
         binding.rvHouses.layoutManager = linearLayoutManager
@@ -58,26 +62,7 @@ class HouseListFragment : Fragment(), View.OnClickListener {
         )
         binding.rvHouses.addItemDecoration(dividerItemDecoration)
 
-        var myParticipations: ArrayList<Participant> = arrayListOf()
-        HouseService.getMyHousesWithMyParticipants(AuthService.auth.uid, {
-            if (it.isSuccessful) {
-                houseList.clear()
-                for (snapshot in it.result!!) {
-                    var house = snapshot.toObject(House::class.java)
-                    // récupère le participant
-                    var optionalMParticipant = myParticipations.stream()
-                        .filter { particip -> particip.houseId.equals(house.houseId) }.findFirst()
-                    if (optionalMParticipant.isPresent)
-                        house.localMyParticipant = optionalMParticipant.get()
-                    houseList.add(house)
-                }
-                houseListAdapter.notifyDataSetChanged()
-            } else {
-                Log.e("HouseList", "Can get my House list")
-                it.exception!!.printStackTrace()
-            }
 
-        }, myParticipations)
     }
 
     override fun onDestroyView() {
