@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.copropre.R
 import com.copropre.common.models.CPTask
@@ -45,14 +46,9 @@ class HouseTasksFragment(private val house: House) : Fragment(), View.OnClickLis
 
         taskListAdapter = TaskListAdapter(taskList, house,this)
         binding.rvTasks.adapter = taskListAdapter
-        var linearLayoutManager = LinearLayoutManager(context)
-        binding.rvTasks.layoutManager = linearLayoutManager
+        var gridLayoutManager = GridLayoutManager(context, 2)
+        binding.rvTasks.layoutManager = gridLayoutManager
 
-        val dividerItemDecoration = DividerItemDecoration(
-            context,
-            linearLayoutManager.orientation
-        )
-        binding.rvTasks.addItemDecoration(dividerItemDecoration)
 
         getHouseTasks()
 

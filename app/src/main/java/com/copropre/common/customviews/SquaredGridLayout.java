@@ -2,9 +2,11 @@ package com.copropre.common.customviews;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-public class SquaredGridLayout extends RelativeLayout {
+public class SquaredGridLayout extends LinearLayout {
 
     public SquaredGridLayout(Context context) {
         super(context);
@@ -23,7 +25,7 @@ public class SquaredGridLayout extends RelativeLayout {
     }
 
     @Override
-    public void onMeasure(int widthMesured, int heightMesured) {
-        super.onMeasure(widthMesured, widthMesured);
+    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
     }
 }
