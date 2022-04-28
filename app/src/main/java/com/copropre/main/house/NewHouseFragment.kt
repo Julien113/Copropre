@@ -1,6 +1,5 @@
 package com.copropre.main.house
 
-import android.app.ActionBar
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,7 +12,6 @@ import com.copropre.common.services.common.TopBarService
 import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.HouseService
 import com.copropre.databinding.FragmentNewHouseBinding
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 
 class NewHouseFragment : Fragment(), View.OnClickListener {

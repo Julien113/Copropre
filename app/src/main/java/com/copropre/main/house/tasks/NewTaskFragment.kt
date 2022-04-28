@@ -1,8 +1,6 @@
 package com.copropre.main.house.tasks
 
 import android.os.Bundle
-import android.text.InputType
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,19 +9,12 @@ import com.copropre.R
 import com.copropre.common.models.CPTask
 import com.copropre.common.models.House
 import com.copropre.common.services.common.TopBarService
-import com.copropre.common.services.main.HouseService
 import com.copropre.common.services.main.TaskService
-import com.copropre.common.services.main.TaskService.getHouseTasks
 import com.copropre.common.utils.Utils
-import com.copropre.databinding.FragmentHouseTasksBinding
-import com.copropre.databinding.FragmentNewHouseBinding
 import com.copropre.databinding.FragmentNewTaskBinding
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.slider.Slider
-import java.text.DateFormat
 import java.util.*
 
 class NewTaskFragment(private val house: House, private val houseTasksFragment: HouseTasksFragment) : Fragment(), View.OnClickListener {

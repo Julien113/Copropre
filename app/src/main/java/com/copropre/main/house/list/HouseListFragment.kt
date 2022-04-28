@@ -9,12 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.copropre.R
-import com.copropre.common.models.House
-import com.copropre.common.services.main.AuthService
-import com.copropre.common.services.main.HouseService
 import com.copropre.databinding.FragmentHouseListBinding
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.copropre.common.models.Participant
 import com.copropre.common.services.DataHolder
 import com.copropre.common.services.common.TopBarService
 import com.copropre.main.house.join.HouseJoinFragment

@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.e("oncreate","ONCREATE")
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -33,13 +35,6 @@ class MainActivity : AppCompatActivity() {
         checkUpdate()
 
         initTopBar()
-
-
-
-    }
-
-    public override fun onStart() {
-        super.onStart()
 
         // Check if user is signed in (non-null) and update UI accordingly.
         val firebaseCurrentUser = AuthService.getAuth().currentUser
@@ -56,6 +51,14 @@ class MainActivity : AppCompatActivity() {
             setFragmentLogin()
 
         }
+
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        Log.e("onstart","ONstart")
+
+
     }
 
     fun checkUpdate() {

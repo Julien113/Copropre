@@ -33,6 +33,7 @@ class HouseFragment(private val house: House): Fragment(), View.OnClickListener 
 
         TopBarService.changeTopBar(TopBarService.FragmentName.FRAGMENT_HOUSE, house.name)
 
+        HouseService.selectedHouse = house
 
         val pagerAdapter = HousePageAdapter(this, house)
         binding.viewPager.adapter = pagerAdapter

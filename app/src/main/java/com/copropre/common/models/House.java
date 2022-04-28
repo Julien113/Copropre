@@ -3,6 +3,7 @@ package com.copropre.common.models;
 import com.google.firebase.firestore.Exclude;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class House extends DBClass {
@@ -11,6 +12,8 @@ public class House extends DBClass {
     String description;
     String userCreation;
     String userUpdate;
+    String invitationCode;
+    Date invitationCodeExpirationDate;
 
     @Exclude
     private List<Participant> localParticipants = new ArrayList<>();
@@ -81,6 +84,22 @@ public class House extends DBClass {
 
     public void setTasks(List<CPTask> CPTasks) {
         this.localCPTasks = CPTasks;
+    }
+
+    public String getInvitationCode() {
+        return invitationCode;
+    }
+
+    public void setInvitationCode(String invitationCode) {
+        this.invitationCode = invitationCode;
+    }
+
+    public Date getInvitationCodeExpirationDate() {
+        return invitationCodeExpirationDate;
+    }
+
+    public void setInvitationCodeExpirationDate(Date invitationCodeExpirationDate) {
+        this.invitationCodeExpirationDate = invitationCodeExpirationDate;
     }
 
     @Override

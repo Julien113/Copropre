@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/PaddedBackGround">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tSubtitle"
+        android:text="Le code de ce foyer est:"
+        style="@style/MiniSubTitle"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tHouseCode"
+        android:layout_below="@id/tSubtitle"
+        android:layout_marginTop="40dp"
+        android:text="0480454056"
+        android:textSize="48dp"
+        />
+
+    <ImageButton
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@id/tHouseCode"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="35dp"
+        android:id="@+id/ibCopyCode"
+        android:contentDescription="Copier le code du foyer"
+        android:background="@color/app_background"
+        android:src="@drawable/ic_share" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bShare"
+        android:text="Partager"
+        android:layout_below="@id/tHouseCode"
+        android:layout_marginTop="8dp"
+        style="@style/ButtonNormal"
+        android:backgroundTint="@color/secondary_lesser"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:id="@+id/tAddFictif"
+        android:layout_marginTop="36dp"
+        android:text="Ajouter un participant sans compte"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Nom"
+        android:id="@+id/etParticipantName"
+        android:layout_below="@id/tAddFictif"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tErrorName"
+        android:layout_below="@id/etParticipantName"
+        style="@style/EditTextErrorMsg"
+        />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bAdd"
+        android:text="Ajouter"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentBottom="true"
+        style="@style/ButtonNormal"
+        />
+
+</RelativeLayout>

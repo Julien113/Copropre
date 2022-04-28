@@ -14,10 +14,6 @@ import com.copropre.common.models.Participant
 import com.copropre.common.services.common.TopBarService
 import com.copropre.common.services.main.HouseService
 import com.copropre.databinding.FragmentHouseBalanceBinding
-import com.copropre.databinding.FragmentNewHouseBinding
-import com.copropre.main.house.list.HouseListAdapter
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnFailureListener
 
 class HouseBalanceFragment(private val house: House) : Fragment(), View.OnClickListener {
     private var _binding: FragmentHouseBalanceBinding? = null

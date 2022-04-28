@@ -18,7 +18,6 @@ import com.copropre.common.services.main.HouseService
 import com.copropre.common.services.main.TaskService
 import com.copropre.common.utils.Utils
 import com.copropre.databinding.FragmentHouseHistoryBinding
-import com.copropre.main.house.tasks.NewTaskFragment
 
 class HouseHistoryFragment(private val house: House) : Fragment(), View.OnClickListener {
     private var _binding: FragmentHouseHistoryBinding? = null

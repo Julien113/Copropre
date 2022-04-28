@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.copropre.R
 import com.copropre.common.models.House
 import com.copropre.common.models.Participant
-import com.copropre.common.services.AbstractService
 import com.copropre.common.services.common.TopBarService
 import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.HouseService
 import com.copropre.databinding.FragmentHouseJoinBinding
 import com.copropre.main.house.HouseFragment
-import com.copropre.main.house.list.HouseListAdapter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HouseJoinFragment() : Fragment(), View.OnClickListener {
     private var _binding: FragmentHouseJoinBinding? = null
@@ -88,47 +88,51 @@ class HouseJoinFragment() : Fragment(), View.OnClickListener {
             return
         }
 
-        HouseService.getHouse(houseCode).addOnCompleteListener {
+        HouseService.getHouseWithInvitationCode(houseCode).addOnCompleteListener {
             if (it.isSuccessful) {
-                val house = it.result!!.toObject(House::class.java)
-                if (house == null) {
+                if (it.result!!.isEmpty) {
                     houseCodeErrors.add("Ce code ne correspond à aucun foyer.")
                     setHouseErrorText()
                 } else {
-                    // Vérifie qu'on ne fait pas parti de la maison
-                    HouseService.getParticipants(house.houseId)
-                        .addOnSuccessListener { participants ->
-                            var isInHouse = false
-                            var fictifs = arrayListOf<Participant>()
-                            for (participant in participants.toObjects(Participant::class.java)) {
-                                if (participant.userId == null)
-                                    fictifs.add(participant)
-                                else {
-                                    if (participant.userId.equals(AuthService.auth.uid)) {
-                                        isInHouse = true;
+                    val house = it.result!!.first().toObject(House::class.java)
+                    // Vérifie que le code n'est pas expiré
+                    if (house.invitationCodeExpirationDate.before(Date())) {
+                        houseCodeErrors.add("Ce code est trop ancien. Vous pouvez demander à un membre du foyer de vous en donner un nouveau.")
+                        setHouseErrorText()
+                    } else {
+                        // Vérifie qu'on ne fait pas parti de la maison
+                        HouseService.getParticipants(house.houseId)
+                            .addOnSuccessListener { participants ->
+                                var isInHouse = false
+                                var fictifs = arrayListOf<Participant>()
+                                for (participant in participants.toObjects(Participant::class.java)) {
+                                    if (participant.userId == null)
+                                        fictifs.add(participant)
+                                    else {
+                                        if (participant.userId.equals(AuthService.auth.uid)) {
+                                            isInHouse = true;
+                                        }
                                     }
                                 }
-
+                                if (!isInHouse) {
+                                    // continue
+                                    this.participantsFictifs.clear()
+                                    Log.e("fictifs", "fict:" + fictifs)
+                                    this.participantsFictifs.addAll(fictifs)
+                                    this.temporyHouse = house
+                                    this.adapterPartifipantsFictif.setHouse(house)
+                                    openLayoutSurname()
+                                } else {
+                                    houseCodeErrors.add("Vous faites déjà parti de ce foyer.")
+                                    setHouseErrorText()
+                                }
                             }
-                            if (!isInHouse) {
-                                // continue
-                                this.participantsFictifs.clear()
-                                Log.e("fictifs","fict:"+fictifs)
-                                this.participantsFictifs.addAll(fictifs)
-                                this.temporyHouse = house
-                                this.adapterPartifipantsFictif.setHouse(house)
-                                openLayoutSurname()
-                            } else {
-                                houseCodeErrors.add("Vous faites déjà parti de ce foyer.")
-                                setHouseErrorText()
-                            }
+                    }
 
-                        }
-
-                    Log.e("house", "hoous" + house.toString())
                 }
             } else {
                 it.exception!!.printStackTrace()
+                Log.e("HouseJoinFragment", "getHouseInvitationCode failed")
             }
         }
 
@@ -150,7 +154,6 @@ class HouseJoinFragment() : Fragment(), View.OnClickListener {
         binding.lFirst.visibility = View.GONE
         binding.lParticipants.visibility =
             if (participantsFictifs.isEmpty()) View.GONE else View.VISIBLE
-        Log.e("yoo","bsoir "+(participantsFictifs.isEmpty()))
         layoutSurnameIsOpen = true
 
         adapterPartifipantsFictif.notifyDataSetChanged()
@@ -162,12 +165,17 @@ class HouseJoinFragment() : Fragment(), View.OnClickListener {
             surname = AuthService.getCurrentUser().name
         }
 
-        HouseService.addParticipant(temporyHouse.houseId, surname, AuthService.getCurrentUser().userId, {
-            Log.e("oncomplete", "2")
-           goToHouse()
-        }, {
-            it.printStackTrace()
-        })
+        HouseService.addParticipant(
+            temporyHouse.houseId,
+            surname,
+            AuthService.getCurrentUser().userId,
+            {
+                Log.e("oncomplete", "2")
+                goToHouse()
+            },
+            {
+                it.printStackTrace()
+            })
     }
 
     fun joinHouseWithFictifParticipant() {
@@ -177,12 +185,17 @@ class HouseJoinFragment() : Fragment(), View.OnClickListener {
             surname = AuthService.getCurrentUser().name
         }
 
-        HouseService.addParticipant(temporyHouse.houseId, surname, AuthService.getCurrentUser().userId, {
-            Log.e("oncomplete", "2")
-            goToHouse()
-        }, {
-            it.printStackTrace()
-        })
+        HouseService.addParticipant(
+            temporyHouse.houseId,
+            surname,
+            AuthService.getCurrentUser().userId,
+            {
+                Log.e("oncomplete", "2")
+                goToHouse()
+            },
+            {
+                it.printStackTrace()
+            })
     }
 
     fun goToHouse() {

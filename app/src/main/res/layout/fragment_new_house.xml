@@ -5,53 +5,82 @@
     style="@style/PaddedBackGround"
     >
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <EditText
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etName"
             android:hint="Nom du foyer"
             android:inputType="text"
-            android:outlineAmbientShadowColor="@color/green"
-            />
+            android:outlineAmbientShadowColor="@color/green" />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/tErrorName"
             style="@style/EditTextErrorMsg"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <EditText
+            android:id="@+id/etDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etDescription"
             android:hint="Description"
-            android:inputType="text"/>
+            android:inputType="text" />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/tErrorDescription"
             style="@style/EditTextErrorMsg"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_image_button">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="15dp"
+                android:src="@drawable/ic_house_1" />
+
+            <RelativeLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/rounded_edit_image_button">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+
+                    android:src="@drawable/outline_edit_24_white" />
+            </RelativeLayout>
+        </RelativeLayout>
 
         <TextView
+            style="@style/MiniSubTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Participants:"
-            style="@style/MiniSubTitle"
-            />
+            android:text="Participants:" />
 
         <EditText
+            android:id="@+id/etSurname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etSurname"
             android:hint="Votre surnom (Optionel)"
-            android:inputType="text"/>
+            android:inputType="text" />
     </LinearLayout>
-
 
     <Button
         android:layout_width="match_parent"

@@ -9,19 +9,22 @@ import com.copropre.common.models.Participant;
 import com.copropre.common.services.AbstractService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Random;
 
 public class HouseService extends AbstractService {
     private static final String HOUSE_COLLECTION = "houses";
     public static final String PARTICIPANT_COLLECTION = "participants";
+
+    public static House selectedHouse;
 
 
     public static void createHouse(House house, String participantSurname, OnCompleteListener<Void> onCompleteListener, OnFailureListener onFailureListener) {
@@ -92,9 +95,45 @@ public class HouseService extends AbstractService {
     public static Task<QuerySnapshot> getMultipleParticipants(List<String> participantsIds) {
         return db.collection(PARTICIPANT_COLLECTION).whereIn("participantId",participantsIds).get();
     }
+
     public static Task<Void> addParticipantFromFictif(Participant participant, String userId) {
         participant.setUserId(userId);
         participant.setUpdateDate(new Date());
         return db.collection(PARTICIPANT_COLLECTION).document(participant.getParticipantId()).set(participant);
+    }
+
+    public static void saveHouse(House house, OnCompleteListener<Void> listener) {
+        db.collection(HOUSE_COLLECTION).document(house.getHouseId()).set(house).addOnCompleteListener(listener);
+    }
+
+    public static Task<QuerySnapshot> getHouseWithInvitationCode(String invitationCode) {
+        return  db.collection(HOUSE_COLLECTION).whereEqualTo("invitationCode", invitationCode).get();
+    }
+
+    public static void createNewInvitationCode(House house, OnCompleteListener<Void> listener) {
+        // code
+        int leftLimit = 48; // numeral '0'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+
+        String newInvitationCode = random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        house.setInvitationCode(newInvitationCode);
+
+        // date
+        Date currentDate = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
+        c.add(Calendar.DATE, 7);
+        Date expirationDate = c.getTime();
+
+        house.setInvitationCodeExpirationDate(expirationDate);
+
+        saveHouse(house, listener);
     }
 }

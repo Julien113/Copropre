@@ -8,9 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.copropre.R
-import com.copropre.common.models.CPTask
 import com.copropre.common.models.House
-import com.copropre.common.models.Occurrence
 import com.copropre.common.services.common.TopBarService
 import com.copropre.common.services.main.AuthService
 import com.copropre.common.services.main.TaskService
