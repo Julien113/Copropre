@@ -50,7 +50,7 @@ class TaskListAdapter (private val dataSet: MutableList<CPTask>, private val hou
                 viewHolder.binding.tDate.text = ""
             }
         }
-        viewHolder.binding.llTask.setOnClickListener {
+        viewHolder.binding.bDoTask.setOnClickListener {
             if (house.localMyParticipant !== null) {
                 TaskService.completeTask(task, AuthService.getCurrentUser().userId, house.localMyParticipant.participantId, {
                     if (it.isSuccessful) {

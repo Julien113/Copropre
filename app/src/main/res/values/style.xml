@@ -89,11 +89,6 @@
         <item name="android:textColor">@color/primary</item>
     </style>
 
-    <style name="MiniContentItalic">
-        <item name="fontFamily">@font/poppins_italic</item>
-        <item name="android:textColor">@color/primary</item>
-    </style>
-
     <style name="MiniContentBig">
         <item name="fontFamily">@font/poppins_extra_bold</item>
         <item name="android:textColor">@color/primary</item>
