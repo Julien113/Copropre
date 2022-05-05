@@ -122,8 +122,6 @@ public class TopBarService {
     }
 
     public static void changeTopBarMenuItems(FragmentName fragmentName){
-        Menu menu = topBar.getMenu();
-
         setMenuItem(false, R.id.mbShareApp, R.id.mbRateApp, R.id.mbChangeHouse,
                 R.id.mbHelp, R.id.mbLogin, R.id.mbLogout, R.id.mbInvitation, R.id.mbPremium,
                 R.id.mbProfile);
@@ -149,10 +147,6 @@ public class TopBarService {
             case FRAGMENT_HOUSE_BALANCE:
             case FRAGMENT_HOUSE_HISTORY:
             case FRAGMENT_HOUSE:
-                menu.findItem(R.id.mbPremium).setVisible(true);
-                menu.findItem(R.id.mbInvitation).setVisible(true);
-                menu.findItem(R.id.mbChangeHouse).setVisible(true);
-                menu.findItem(R.id.mbHelp).setVisible(true);
                 setMenuItem(true, R.id.mbPremium, R.id.mbInvitation, R.id.mbChangeHouse, R.id.mbHelp);
                 break;
         }

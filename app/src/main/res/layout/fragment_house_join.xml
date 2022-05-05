@@ -2,14 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    style="@style/PaddedBackGround"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Rejoindre un foyer"
-        style="@style/PageTitle"
-        />
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/lFirst"
@@ -20,28 +15,33 @@
             android:layout_height="wrap_content"
             android:text="Entrez le code du foyer pour le rejoindre. Un membre du foyer peut vous partager ce code depuis l'application."
             style="@style/MiniContentBold"
+            android:id="@+id/tDescription"
             />
+
         <EditText
+            android:id="@+id/etCode"
+            style="@style/MiniContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etCode"
-            android:hint="Code du foyer"
-            style="@style/MiniContent"
-            />
+            android:layout_below="@id/tDescription"
+            android:layout_marginTop="16dp"
+            android:hint="Code du foyer" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tErrorHouseCode"
+            android:layout_below="@id/etCode"
             style="@style/EditTextErrorMsg"
             />
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/bJoin"
             android:text="Rejoindre"
             style="@style/ButtonNormal"
+            android:layout_alignParentBottom="true"
             />
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <LinearLayout
